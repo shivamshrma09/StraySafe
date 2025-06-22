@@ -1,0 +1,199 @@
+.box {
+  background-color: #F5F5F5;
+  width: 50vw;
+  height: 90vh;
+  margin: auto;
+  margin-left: 25vw;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 24px #0001;
+}
+
+.cowimg {
+  height: 85vh;
+  width: 22vw;
+  background-color: #F5F5F5;
+  margin-top: 2.5vh;
+  margin-left: 25px;
+  position: absolute;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid #171010;
+  z-index: 2;
+}
+
+.cowimg .main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cowimg .logo-img {
+  position: absolute;
+  top: 4px;
+  left: 7px;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  background: white;
+  border-radius: 50%;
+  padding: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.h4 {
+  color: #B56208;
+  margin-left: 5.5vw;
+  margin-top: 5vh;
+  position: absolute;
+  z-index: 3;
+  font-size:15px;
+  font-weight: bold;
+}
+
+.content h2 {
+  color: #171010;
+  font-size: 30px;
+  font-weight: bold;
+  margin-left: 26vw;
+  margin-top: 5vh;
+  position: absolute;
+  z-index: 3;
+}
+
+.content p {
+  color: #555555;
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 26vw;
+  margin-top: 12vh;
+  position: absolute;
+  z-index: 3;
+}
+
+.signup-form {
+  max-width: 400px;
+  margin: 30px auto;
+  padding: 24px 32px;
+ 
+  border-radius: 12px;
+  /* box-shadow: 0 4px 24px #0001; */
+  font-family: 'Segoe UI', sans-serif;
+  position: relative;
+  z-index: 4;
+  margin-left: 25vw;
+  margin-top: 18vh;
+}
+
+.signup-form h2 {
+  text-align: center;
+  margin-bottom: 18px;
+  /* color: #555555; */
+}
+
+.signup-form .form-row {
+  display: flex;
+  gap: 12px;
+}
+
+.signup-form label {
+  display: block;
+  margin-bottom: 4px;
+  color: #555555;
+  font-weight: 500;
+}
+
+.signup-form input,
+.signup-form select {
+  width: 100%;
+  padding: 8px 10px;
+  margin-bottom: 10px;
+  border: 1px solid #cfd8dc;
+  border-radius: 6px;
+  font-size: 15px;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.signup-form input:focus,
+.signup-form select:focus {
+  border-color: #1976d2;
+}
+
+.signup-form .error {
+  color: #d32f2f;
+  font-size: 13px;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.signup-form button {
+  width:8vw;
+  height: 40px;
+  padding: 10px;
+  background: #43A047;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+
+.signup-form button:hover {
+  background-color: white;
+  border: 2px solid #43A047;
+  color: #43A047;
+}
+
+.alredy p {
+  margin-left: 26vw;
+  margin-top: 70vh;
+  color: black;
+  position: absolute;
+  z-index: 5;
+}
+
+.alredy .h5 {
+  margin-left: 37vw;
+  margin-top: 69vh;
+  color: #10379A;
+  position: absolute;
+  background-color: #F5F5F5;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.alredy .button1 {
+  margin-left: 43vw;
+  margin-top: 20vh;
+  border-radius: 20px;
+  color: #080d18;
+  position: absolute;
+  background-color: #43A047;
+  border: none;
+  padding: 6px 18px;
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 5;
+}
+
+@media (max-width: 900px) {
+  .box, .cowimg {
+    width: 90vw;
+    margin-left: 0;
+  }
+  .content h2, .content p, .alredy p, .alredy .h5, .alredy .button1 {
+    margin-left: 5vw;
+  }
+  .signup-form {
+    max-width: 95vw;
+    padding: 16px 8px;
+  }
+}

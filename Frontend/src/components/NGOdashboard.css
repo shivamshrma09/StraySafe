@@ -1,0 +1,152 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #f0fff4;
+}
+
+.dashboard-bg {
+  min-height: 100vh;
+  width: 100vw;
+  background: #f0fff4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Navbar */
+.navbar {
+   background: #fff;
+  color: white;
+  width: 100vw;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px #a0aec0;
+  padding: 0 32px;
+}
+.leftnav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.logo {
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #38a169;
+}
+.brand {
+  font-weight: bold;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  margin-bottom: 300px;
+}
+.rightnav ul {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.profile-img {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+}
+
+.info{
+    color: black;
+    margin-top: -200PX;
+    margin-left: 100px;
+}
+
+
+
+
+
+
+
+
+
+.signup-btn {
+  background: white;
+  color: #2f855a;
+  border: none;
+  border-radius: 6px;
+  padding: 7px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 1px 4px #c6f6d5;
+  margin-left: 8px;
+}
+
+.table-container {
+  padding: 20px;
+  max-width: 1200px;
+
+
+  margin: -200px 100px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #9d2020;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  background-color: #342e2e;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.styled-table thead {
+  background-color: #38a169;
+  color: white;
+}
+
+.styled-table tbody tr:hover {
+  background-color: #f1f5f9;
+}
+
+.dash-status {
+  padding: 5px 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: capitalize;
+}
+
+.dash-status.pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.dash-status.verified {
+  background-color: #cce5ff;
+  color: #004085;
+}
+
+.dash-status.resolved {
+  background-color: #d4edda;
+  color: #155724;
+}
