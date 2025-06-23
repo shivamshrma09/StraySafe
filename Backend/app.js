@@ -1,26 +1,33 @@
 const express = require('express');
-const cors = require('cors');
+const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const authRoutes = require('./routes/auth');
+
 dotenv.config();
 
-const authRoutes = require('./routes/auth');
-const reportRoutes = require('./routes/reports');
-
 const app = express();
+app.use(express.json()); // for parsing application/json
 
-// Allow frontend (Vite) to connect to backend
-app.use(cors({
-  origin: 'http://localhost:5173', // Vite default port
-  credentials: true
-}));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
+// Mount auth routes
 app.use('/api/auth', authRoutes);
-app.use('/api/reports', reportRoutes);
 
+// Default route for testing
 app.get('/', (req, res) => {
-  res.send('StraySafe API is running');
+  res.send('API is working!');
 });
 
-module.exports = app;
+// Connect to MongoDB
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => {
+  console.log('MongoDB connected');
+}).catch((err) => {
+  console.error('MongoDB connection error:', err.message);
+});
+
+// Start server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

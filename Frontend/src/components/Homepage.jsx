@@ -2,21 +2,37 @@ import React from "react";
 import "./Homepage.css";
 
 export default function Homepage() {
+  // Navigation button handlers (add routing if using react-router)
+  const handleReportNow = () => {
+    window.location.href = "/report"; // Update to your report page route
+  };
+  const handleLearnMore = () => {
+    window.location.href = "/about"; // Update to your about page route
+  };
+  const handleLogin = () => {
+    window.location.href = "/login";
+  };
+  const handleSignUp = () => {
+    window.location.href = "/signup";
+  };
+
   return (
     <>
       {/* Navbar */}
       <nav className="navbar">
         <div className="leftnav">
-          <img src="whatsapp.jpg" alt="" />
+          <img src="whatsapp.jpg" alt="Whatsapp contact" />
           <span className="brand">StraySafe</span>
         </div>
         <div className="rightnav">
           <ul>
             <li>Home</li>
-            <li>How it's work</li>
-            <li>Login</li>
+            <li>How it works</li>
+            <li style={{ cursor: "pointer" }} onClick={handleLogin}>Login</li>
             <li>
-              <button className="signup-btn">SignUp</button>
+              <button className="signup-btn" onClick={handleSignUp}>
+                SignUp
+              </button>
             </li>
           </ul>
         </div>
@@ -35,14 +51,18 @@ export default function Homepage() {
               No login, no hassle—just instant help, right when it matters.
             </p>
             <div className="hero-btns">
-              <button className="primary-btn">Report Now</button>
-              <button className="primary-btn1">Learn More</button>
+              <button className="primary-btn" onClick={handleReportNow}>
+                Report Now
+              </button>
+              <button className="primary-btn1" onClick={handleLearnMore}>
+                Learn More
+              </button>
             </div>
           </div>
           <div className="hero-images">
-            <img src="image1.jpg" className="img1" alt="dummy1" />
-            <img src="image2.jpg" className="img2" alt="dummy2" />
-            <img src="image3.jpg" className="img3" alt="dummy3" />
+            <img src="image1.jpg" className="img1" alt="Rescued dog" loading="lazy" />
+            <img src="image2.jpg" className="img2" alt="NGO volunteers" loading="lazy" />
+            <img src="image3.jpg" className="img3" alt="Animal rescue" loading="lazy" />
           </div>
         </section>
 
@@ -55,19 +75,19 @@ export default function Homepage() {
           </p>
           <div className="steps">
             <div className="step">
-              <img src="step1.jpg" alt="step1" />
+              <img src="step1.jpg" alt="Spot & Capture" loading="lazy" />
               <div className="step-num">1</div>
               <h4>Spot & Capture</h4>
               <p>See a stray animal on the street? Instantly capture a live photo and start your report on StraySafe.</p>
             </div>
             <div className="step">
-              <img src="step1.jpg" alt="step2" />
+              <img src="step2.jpg" alt="Submit Location & Proof" loading="lazy" />
               <div className="step-num">2</div>
               <h4>Submit Location & Proof</h4>
               <p>Automatically add your location from your phone and submit the report with the photo—just one click away.</p>
             </div>
             <div className="step">
-              <img src="step1.jpg" alt="step3" />
+              <img src="step3.jpg" alt="Rescue & Help" loading="lazy" />
               <div className="step-num">3</div>
               <h4>Rescue & Help</h4>
               <p>Your report reaches the NGO team immediately, who then rescue or provide help to the animal.</p>
@@ -79,18 +99,18 @@ export default function Homepage() {
         <section className="tracking">
           <h2>Track Reports Live</h2>
           <div className="tracking-content">
-            <img className="tracking-map" src="map.jpg" alt="map" />
+            <img className="tracking-map" src="map.jpg" alt="Live reports map" loading="lazy" />
             <ul>
               <li>
-                <strong>📍 View Real-Time Animal Reports:</strong> <br/>
+                <strong>📍 View Real-Time Animal Reports:</strong> <br />
                 See all stray animal cases reported by citizens in your city, updated instantly on the map.
               </li>
               <li>
-                <strong>📍 Track Rescue Progress:</strong><br/>
+                <strong>📍 Track Rescue Progress:</strong><br />
                 Each pin shows where help is needed or where rescue action has already been taken—making the process transparent.
               </li>
               <li>
-                <strong>📍 Quick Access for Rescue Teams:</strong><br/>
+                <strong>📍 Quick Access for Rescue Teams:</strong><br />
                 NGOs and volunteers can easily find and respond to new reports, ensuring faster help for animals in need.
               </li>
             </ul>
@@ -131,12 +151,12 @@ export default function Homepage() {
         <section className="partners">
           <h2>Partner NGOs</h2>
           <div className="partner-logos">
-            <img src="ngo1.jpg" alt="NGO1" />
-            <img src="ngo2.jpg" alt="NGO2" />
-            <img src="ngo3.jpg" alt="NGO3" />
-            <img src="ngo4.jpg" alt="NGO4" />
-            <img src="ngo5.jpg" alt="NGO5" />
-            <img src="ngo6.jpg" alt="NGO6" />
+            <img src="ngo1.jpg" alt="NGO1" loading="lazy" />
+            <img src="ngo2.jpg" alt="NGO2" loading="lazy" />
+            <img src="ngo3.jpg" alt="NGO3" loading="lazy" />
+            <img src="ngo4.jpg" alt="NGO4" loading="lazy" />
+            <img src="ngo5.jpg" alt="NGO5" loading="lazy" />
+            <img src="ngo6.jpg" alt="NGO6" loading="lazy" />
           </div>
           <p>
             Our trusted NGO partners respond to your reports and ensure every animal gets the care it deserves. Collaboration is our strength.

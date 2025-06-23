@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-
+import "./Singupvol.css";
+ 
 const initialForm = {
   firstName: '',
   lastName: '',
@@ -15,20 +16,26 @@ export default function Singupvol() {
   const [errors, setErrors] = useState({});
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
     setErrors({ ...errors, [e.target.name]: '' });
+    setError('');
+    setSuccess(false);
   };
 
   const validate = () => {
     const newErrors = {};
-    if (!form.firstName) newErrors.firstName = 'First name is required';
-    if (!form.lastName) newErrors.lastName = 'Last name is required';
-    if (!form.email) newErrors.email = 'Email is required';
-    if (!form.phone) newErrors.phone = 'Phone is required';
+    if (!form.firstName.trim()) newErrors.firstName = 'First name is required';
+    if (!form.lastName.trim()) newErrors.lastName = 'Last name is required';
+    if (!form.email.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/))
+      newErrors.email = 'Valid email is required';
+    if (!form.phone.match(/^\d{10}$/))
+      newErrors.phone = '10-digit phone required';
     if (!form.gender) newErrors.gender = 'Gender is required';
-    if (!form.password) newErrors.password = 'Password is required';
+    if (form.password.length < 6)
+      newErrors.password = 'Password must be at least 6 characters';
     if (form.password !== form.confirmPassword) newErrors.confirmPassword = "Passwords don't match";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -37,20 +44,21 @@ export default function Singupvol() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setSuccess(false);
     if (!validate()) return;
     setLoading(true);
     try {
       const res = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, role: "volunteer" }),
       });
       const data = await res.json();
       if (!res.ok) {
         setError(data?.message || 'Signup failed');
         return;
       }
-      alert('Signup successful!');
+      setSuccess(true);
       setForm(initialForm);
     } catch (err) {
       setError('Network error. Please try again.');
@@ -60,8 +68,9 @@ export default function Singupvol() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="signup-form" onSubmit={handleSubmit} autoComplete="off">
       {error && <div className="error">{error}</div>}
+      {success && <div className="success">Signup successful! You can now log in.</div>}
       <div>
         <label>First Name</label>
         <input name="firstName" value={form.firstName} onChange={handleChange} type="text" placeholder="First Name" />

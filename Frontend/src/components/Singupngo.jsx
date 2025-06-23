@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import "./Singupvol.css";
+import "./Singupngo.css";
 
-const SignupForm = () => {
+const Singupngo = () => {
   const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
+    ngoName: "",
+    regNumber: "",
     email: "",
     phone: "",
-    gender: "",
     password: "",
     confirmPassword: "",
   });
@@ -17,14 +16,12 @@ const SignupForm = () => {
 
   const validate = () => {
     const newErrors = {};
-    if (!form.firstName.trim()) newErrors.firstName = "NGO Name is required";
-    if (!form.lastName.trim()) newErrors.lastName = "Registration number is required";
+    if (!form.ngoName.trim()) newErrors.ngoName = "NGO Name is required";
+    if (!form.regNumber.trim()) newErrors.regNumber = "Registration number is required";
     if (!form.email.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/))
       newErrors.email = "Valid email is required";
     if (!form.phone.match(/^\d{10}$/))
       newErrors.phone = "10-digit phone required";
-    // Gender is optional for NGO, uncomment if you want to require it
-    // if (!form.gender) newErrors.gender = "Gender required";
     if (form.password.length < 6)
       newErrors.password = "Min 6 characters";
     if (form.password !== form.confirmPassword)
@@ -46,8 +43,12 @@ const SignupForm = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 
-          ...form, 
-          role: "ngo" 
+          ngoName: form.ngoName,
+          regNumber: form.regNumber,
+          email: form.email,
+          phone: form.phone,
+          password: form.password,
+          role: "ngo"
         }),
       });
       const data = await res.json();
@@ -81,24 +82,24 @@ const SignupForm = () => {
           <div>
             <label>NGO Name</label>
             <input
-              name="firstName"
-              value={form.firstName}
+              name="ngoName"
+              value={form.ngoName}
               onChange={handleChange}
               type="text"
               placeholder="NGO Name"
             />
-            {errors.firstName && <span className="error">{errors.firstName}</span>}
+            {errors.ngoName && <span className="error">{errors.ngoName}</span>}
           </div>
           <div>
             <label>Registration Number</label>
             <input
-              name="lastName"
-              value={form.lastName}
+              name="regNumber"
+              value={form.regNumber}
               onChange={handleChange}
               type="text"
               placeholder="Reg. Number"
             />
-            {errors.lastName && <span className="error">{errors.lastName}</span>}
+            {errors.regNumber && <span className="error">{errors.regNumber}</span>}
           </div>
         </div>
         <div>
@@ -123,21 +124,6 @@ const SignupForm = () => {
           />
           {errors.phone && <span className="error">{errors.phone}</span>}
         </div>
-        {/* Uncomment gender if you want NGOs to fill it */}
-        {/* <div>
-          <label>Gender</label>
-          <select
-            name="gender"
-            value={form.gender}
-            onChange={handleChange}
-          >
-            <option value="">Select Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-          </select>
-          {errors.gender && <span className="error">{errors.gender}</span>}
-        </div> */}
         <div>
           <label>Password</label>
           <input
@@ -163,9 +149,8 @@ const SignupForm = () => {
         <div className='alredy'>
           <p>Already have an account?</p>
           <button className='h5' type="button" onClick={()=>window.location.href="/login"}>Login</button>
-          <button className='button1' type="button">Next</button>
-          <button type="submit">Sign Up</button>
         </div>
+        <button type="submit">Sign Up</button>
         {apiError && <div className="error">{apiError}</div>}
         {success && <div className="success">Signup successful! You can now log in.</div>}
       </form>
@@ -173,4 +158,4 @@ const SignupForm = () => {
   );
 };
 
-export default SignupForm;
+export default Singupngo;

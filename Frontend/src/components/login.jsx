@@ -4,6 +4,7 @@ import "./Login.css";
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -16,6 +17,7 @@ export default function Login() {
       setError("Email and password are required!");
       return;
     }
+    setLoading(true);
     try {
       const res = await fetch("/api/auth/login", {
         method: "POST",
@@ -25,22 +27,26 @@ export default function Login() {
       const data = await res.json();
       if (!res.ok) {
         setError(data.message || "Login failed");
+        setLoading(false);
         return;
       }
       // Success: Save token, redirect, etc.
       localStorage.setItem("token", data.token);
       alert("Login Success!");
-      // window.location.href = "/voldashboard"; // Example redirect
+      // Redirect example: update to your dashboard route as needed
+      window.location.href = "/voldashboard";
     } catch (err) {
-      setError("Network error");
+      setError("Network error. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="login-box">
       <div className="login-img-side">
-        <img className="main-img" src="Singup.jpg" alt="Visual" />
-        <img className="logo-img" src="whatsapp.jpg" alt="Logo" />
+        <img className="main-img" src="Singup.jpg" alt="Visual" loading="lazy" />
+        <img className="logo-img" src="whatsapp.jpg" alt="Logo" loading="lazy" />
       </div>
       <div className="login-content">
         <h4 className="brand">StraySafe</h4>
@@ -63,7 +69,9 @@ export default function Login() {
             onChange={handleChange}
           />
           {error && <span className="form-error">{error}</span>}
-          <button type="submit">Login</button>
+          <button type="submit" disabled={loading}>
+            {loading ? "Logging in..." : "Login"}
+          </button>
         </form>
         <div className="login-links">
           <span>
