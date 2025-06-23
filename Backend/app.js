@@ -8,7 +8,11 @@ const reportRoutes = require('./routes/reports');
 
 const app = express();
 
-app.use(cors());
+// Allow frontend (Vite) to connect to backend
+app.use(cors({
+  origin: 'http://localhost:5173', // Vite default port
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
