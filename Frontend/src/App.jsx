@@ -7,7 +7,7 @@ import Login from "./components/Login.jsx";
 import VOLdashboard from "./components/VOLdashboard.jsx";
 import Reportanimal from "./components/Reportanimal.jsx";
 import NGOdashboard from "./components/NGOdashboard.jsx";
-// import NotFound from "./components/NotFound.jsx"; // If you create a 404 page
+// import NotFound from "./components/NotFound.jsx"; // Uncomment if 404 component is created
 
 function App() {
   return (

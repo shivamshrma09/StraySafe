@@ -4,10 +4,10 @@ import "./Homepage.css";
 export default function Homepage() {
   // Navigation button handlers (add routing if using react-router)
   const handleReportNow = () => {
-    window.location.href = "/report"; // Update to your report page route
+    window.location.href = "/report";
   };
   const handleLearnMore = () => {
-    window.location.href = "/about"; // Update to your about page route
+    window.location.href = "/about";
   };
   const handleLogin = () => {
     window.location.href = "/login";

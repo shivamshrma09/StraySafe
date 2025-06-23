@@ -19,53 +19,36 @@ export default function Singup() {
         <img className="main-img" src="Singup.jpg" alt="Signup Visual" />
         <img className="logo-img" src="whatsapp.jpg" alt="Company Logo" />
       </div>
-
-      <h4 className="h4">StraySafe</h4>
-
-      <div className="content">
+      <div className="signup-content">
+        <div className="brand">StraySafe</div>
         <h2>Create a new account</h2>
         <p>
-          Create your StraySafe account to join a community
-          <br />
-          working for animal safety. Start reporting,
-          <br />
+          Create your StraySafe account to join a community<br />
+          working for animal safety. Start reporting,<br />
           tracking, and making a positive impact today.
         </p>
-      </div>
-
-      <button className="volentier" onClick={handleVolunteerSignup}>
-        <img
-          className="img1"
-          src="volenteer-removebg-preview.png"
-          alt="Volunteer"
-        />
-        <h2>Sign up as a Volunteer</h2>
-        <img
-          className="img2"
-          src="yes-removebg-preview.png"
-          alt="Selected"
-        />
-      </button>
-
-      <button className="volentier2" onClick={handleNGOSignup}>
-        <img
-          className="img1"
-          src="ngo-removebg-preview.png"
-          alt="NGO"
-        />
-        <h2>Sign up as a NGO</h2>
-        <img
-          className="img2"
-          src="yes-removebg-preview.png"
-          alt="Selected"
-        />
-      </button>
-
-      <div className="alredy">
-        <p>Already have an account?</p>
-        <button className="h5" onClick={handleLogin}>
-          Login
+        <button className="volentier" onClick={handleVolunteerSignup}>
+          <img
+            className="img1"
+            src="volenteer-removebg-preview.png"
+            alt="Volunteer"
+          />
+          Sign up as a Volunteer
         </button>
+        <button className="volentier2" onClick={handleNGOSignup}>
+          <img
+            className="img1"
+            src="ngo-removebg-preview.png"
+            alt="NGO"
+          />
+          Sign up as a NGO
+        </button>
+        <div className="alredy">
+          <p>Already have an account?</p>
+          <button className="h5" onClick={handleLogin}>
+            Login
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -16,7 +16,7 @@ body {
 
 /* Navbar */
 .navbar {
-   background: #fff;
+  background: #fff;
   color: white;
   width: 100vw;
   height: 60px;
@@ -46,7 +46,6 @@ body {
   font-weight: bold;
   font-size: 1.4rem;
   letter-spacing: 1px;
-  margin-bottom: 300px;
 }
 .rightnav ul {
   display: flex;

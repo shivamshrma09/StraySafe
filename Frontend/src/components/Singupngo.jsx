@@ -17,8 +17,11 @@ const Singupngo = () => {
   const validate = () => {
     const newErrors = {};
     if (!form.ngoName.trim()) newErrors.ngoName = "NGO Name is required";
-    if (!form.regNumber.trim()) newErrors.regNumber = "Registration number is required";
-    if (!form.email.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/))
+    if (!form.regNumber.trim())
+      newErrors.regNumber = "Registration number is required";
+    if (
+      !form.email.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/)
+    )
       newErrors.email = "Valid email is required";
     if (!form.phone.match(/^\d{10}$/))
       newErrors.phone = "10-digit phone required";
@@ -44,7 +47,7 @@ const Singupngo = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           firstName: form.ngoName,   // important: backend expects firstName
-          lastName: "",              // backend expects lastName
+          lastName: form.regNumber,  // pass regNumber as lastName for backend
           email: form.email,
           phone: form.phone,
           gender: "",                // optional for NGO
@@ -68,19 +71,21 @@ const Singupngo = () => {
   };
 
   return (
-    <div className='box'>
+    <div className="box">
       <div className="cowimg">
         <img className="main-img" src="Singup.jpg" alt="Signup Visual" />
         <img className="logo-img" src="whatsapp.jpg" alt="Company Logo" />
       </div>
-      <h4 className='h4'>StraySafe</h4>
-      <div className='content'>
+      <h4 className="h4">StraySafe</h4>
+      <div className="content">
         <h2>← Sign up as NGO</h2>
-        <p>Join us to help stray animals and make a difference in your community!</p>
+        <p>
+          Join us to help stray animals and make a difference in your community!
+        </p>
       </div>
       <form className="signup-form" onSubmit={handleSubmit} autoComplete="off">
         <div className="form-row">
-          <div>
+          <div style={{ flex: 1 }}>
             <label>NGO Name</label>
             <input
               name="ngoName"
@@ -89,9 +94,11 @@ const Singupngo = () => {
               type="text"
               placeholder="NGO Name"
             />
-            {errors.ngoName && <span className="error">{errors.ngoName}</span>}
+            {errors.ngoName && (
+              <span className="error">{errors.ngoName}</span>
+            )}
           </div>
-          <div>
+          <div style={{ flex: 1 }}>
             <label>Registration Number</label>
             <input
               name="regNumber"
@@ -100,7 +107,9 @@ const Singupngo = () => {
               type="text"
               placeholder="Reg. Number"
             />
-            {errors.regNumber && <span className="error">{errors.regNumber}</span>}
+            {errors.regNumber && (
+              <span className="error">{errors.regNumber}</span>
+            )}
           </div>
         </div>
         <div>
@@ -145,15 +154,25 @@ const Singupngo = () => {
             type="password"
             placeholder="Confirm Password"
           />
-          {errors.confirmPassword && <span className="error">{errors.confirmPassword}</span>}
+          {errors.confirmPassword && (
+            <span className="error">{errors.confirmPassword}</span>
+          )}
         </div>
-        <div className='alredy'>
+        <div className="alredy">
           <p>Already have an account?</p>
-          <button className='h5' type="button" onClick={() => window.location.href = "/login"}>Login</button>
+          <button
+            className="h5"
+            type="button"
+            onClick={() => (window.location.href = "/login")}
+          >
+            Login
+          </button>
         </div>
         <button type="submit">Sign Up</button>
         {apiError && <div className="error">{apiError}</div>}
-        {success && <div className="success">Signup successful! You can now log in.</div>}
+        {success && (
+          <div className="success">Signup successful! You can now log in.</div>
+        )}
       </form>
     </div>
   );

@@ -3,10 +3,17 @@ const router = express.Router();
 const multer = require('multer');
 const { auth } = require('../middleware/auth');
 const { authorizeRoles } = require('../middleware/roles');
-const { createReport, getAllReports, updateReport, getUserReports } = require('../controllers/reportController');
+const {
+  createReport,
+  getAllReports,
+  updateReport,
+  getUserReports
+} = require('../controllers/reportController');
 
+// Configure multer for file uploads
 const upload = multer({ dest: 'uploads/' });
 
+// Route to create a new report (animal lover & volunteer)
 router.post(
   '/',
   auth,
@@ -15,6 +22,7 @@ router.post(
   createReport
 );
 
+// Route to get all reports (NGO only)
 router.get(
   '/',
   auth,
@@ -22,6 +30,7 @@ router.get(
   getAllReports
 );
 
+// Route to update a report (status/rescue proof) (NGO only)
 router.put(
   '/:id',
   auth,
@@ -30,6 +39,7 @@ router.put(
   updateReport
 );
 
+// Route to get current user's reports (animal lover & volunteer)
 router.get(
   '/my',
   auth,

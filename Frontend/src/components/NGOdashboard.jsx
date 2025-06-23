@@ -30,68 +30,70 @@ export default function NGOdashboard() {
   }, []);
 
   return (
-    <div style={{ padding: "24px" }}>
-      <h2>Active Rescue Reports</h2>
-      {loading && <div className="info">Loading reports...</div>}
-      {error && <div className="error">{error}</div>}
-      <table className="styled-table">
-        <thead>
-          <tr>
-            <th>Photo</th>
-            <th>Animal Type</th>
-            <th>Location</th>
-            <th>Status</th>
-            <th>ID</th>
-            <th>Situation</th>
-            <th>Description</th>
-            <th>Time</th>
-            <th>Name</th>
-            <th>Phone number</th>
-          </tr>
-        </thead>
-        <tbody>
-          {!loading && activeReports.length === 0 ? (
+    <div className="dashboard-bg">
+      <div className="table-container">
+        <h2>Active Rescue Reports</h2>
+        {loading && <div className="info">Loading reports...</div>}
+        {error && <div className="error">{error}</div>}
+        <table className="styled-table">
+          <thead>
             <tr>
-              <td colSpan="10" style={{ textAlign: "center" }}>
-                No active reports available.
-              </td>
+              <th>Photo</th>
+              <th>Animal Type</th>
+              <th>Location</th>
+              <th>Status</th>
+              <th>ID</th>
+              <th>Situation</th>
+              <th>Description</th>
+              <th>Time</th>
+              <th>Name</th>
+              <th>Phone number</th>
             </tr>
-          ) : (
-            activeReports.map((r) => (
-              <tr key={r.id || r._id}>
-                <td>
-                  <img
-                    src={r.photo || "/default-animal.png"}
-                    alt={r.animal || "No image"}
-                    style={{
-                      width: 48,
-                      height: 48,
-                      borderRadius: "8px",
-                      objectFit: "cover",
-                    }}
-                    loading="lazy"
-                  />
+          </thead>
+          <tbody>
+            {!loading && activeReports.length === 0 ? (
+              <tr>
+                <td colSpan="10" style={{ textAlign: "center" }}>
+                  No active reports available.
                 </td>
-                <td>{r.animal || "Unknown"}</td>
-                <td>{r.location || "Unknown"}</td>
-                <td>
-                  <span
-                    className={`dash-status ${r.status ? r.status.toLowerCase() : ""}`}
-                  >
-                    {r.status || "Unknown"}
-                  </span>
-                </td>
-                <td>{r.id || r._id}</td>
-                <td>{r.situation || "Unknown"}</td>
-                <td>{r.description || "No description"}</td>
-                <td>{r.time ? new Date(r.time).toLocaleString() : "Unknown"}</td>
-                <td>{r.name || "Unknown"}</td>
-                <td>{r.phone || "Unknown"}</td>
               </tr>
-            ))
-          )}
-        </tbody>
-      </table>
+            ) : (
+              activeReports.map((r) => (
+                <tr key={r.id || r._id}>
+                  <td>
+                    <img
+                      src={r.photo || "/default-animal.png"}
+                      alt={r.animal || "No image"}
+                      style={{
+                        width: 48,
+                        height: 48,
+                        borderRadius: "8px",
+                        objectFit: "cover",
+                      }}
+                      loading="lazy"
+                    />
+                  </td>
+                  <td>{r.animal || "Unknown"}</td>
+                  <td>{r.location || "Unknown"}</td>
+                  <td>
+                    <span
+                      className={`dash-status ${r.status ? r.status.toLowerCase() : ""}`}
+                    >
+                      {r.status || "Unknown"}
+                    </span>
+                  </td>
+                  <td>{r.id || r._id}</td>
+                  <td>{r.situation || "Unknown"}</td>
+                  <td>{r.description || "No description"}</td>
+                  <td>{r.time ? new Date(r.time).toLocaleString() : "Unknown"}</td>
+                  <td>{r.name || "Unknown"}</td>
+                  <td>{r.phone || "Unknown"}</td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

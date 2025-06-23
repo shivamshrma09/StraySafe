@@ -1,5 +1,9 @@
 let userLastReport = {};
 
+/**
+ * Middleware to rate limit report submissions per IP address.
+ * Allows only one report per 2 minutes per IP.
+ */
 function rateLimit(req, res, next) {
   const ip = req.ip;
   const now = Date.now();

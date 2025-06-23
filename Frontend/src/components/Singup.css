@@ -1,35 +1,40 @@
 .box {
   background-color: #F5F5F5;
-  width: 50vw;
-  height: 90vh;
-  margin: auto;
-  margin-left: 25vw;
+  width: 95vw;
+  max-width: 700px;
+  margin: 40px auto;
   border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  box-shadow: 0 2px 12px #0001;
+  overflow: hidden;
+  min-height: 550px;
+  position: relative;
 }
 
 .cowimg {
-  height: 85vh;
-  width: 22vw;
+  flex: 1 1 220px;
   background-color: #F5F5F5;
-  margin-top: 2.5vh;
-  margin-left: 25px;
-  position: absolute;
-  border-radius: 20px;
-  overflow: hidden;
-  border: 1px solid #171010;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-width: 180px;
+  min-height: 320px;
 }
 
 .cowimg .main-img {
   width: 100%;
-  height: 100%;
+  height: 220px;
   object-fit: cover;
-  display: block;
+  border-radius: 20px 0 0 20px;
 }
 
 .cowimg .logo-img {
   position: absolute;
-  top: 4px;   /* या 0px, जैसा दिखाना हो */
-  left: 7px;  /* या 0px */
+  top: 18px;
+  left: 18px;
   width: 40px;
   height: 40px;
   object-fit: contain;
@@ -37,152 +42,144 @@
   border-radius: 50%;
   padding: 4px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-}
-.h4{
-     color:#B56208;
-     margin-left: 5.5vw;
-     z-index: 1;
-margin-top: 5vh;
-position: absolute;
-   
+  border: 2px solid #B56208;
 }
 
-.content h2 {
-  color: #171010;
-  font-size: 30px;
+.signup-content {
+  flex: 2 1 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px 24px 24px 24px;
+  position: relative;
+}
+
+.brand {
+  color: #B56208;
+  font-size: 1.5rem;
   font-weight: bold;
- margin-left: 26vw;
- margin-top: 5vh;
- position: absolute;
- 
- 
-}
-.content p{
-    color: #555555;
-    font-size: 15px;
-    font-weight: bold;
-    margin-left: 26vw;
-    margin-top: 12vh;
-    position: absolute;
-}
-.volentier{
-    background-color: #43A047;
-    width: 23vw;
-    height: 20vh;
-     margin-left: 26vw;
-    margin-top: 30vh;
-     position: absolute;
-     border-radius: 20px;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-}
-.volentier .img1{
- position: absolute;
-  top: 40px;   /* या 0px, जैसा दिखाना हो */
-  left: 7px;  /* या 0px */
-  width: 30px;
-  height: 30px;
-  object-fit: contain;
-  background: white;
-  border-radius: 50%;
-  padding: 4px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  margin-bottom: 10px;
 }
 
-.volentier .img2{
- position: absolute;
-  top: 20px;   /* या 0px, जैसा दिखाना हो */
-  left: 300px;  /* या 0px */
-  width: 30px;
-  height: 30px;
+.signup-content h2 {
+  color: #171010;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.signup-content p {
+  color: #555555;
+  font-size: 1.1rem;
+  margin-bottom: 26px;
+  font-weight: normal;
+}
+
+.volentier, .volentier2 {
+  width: 100%;
+  min-height: 80px;
+  border: none;
+  border-radius: 16px;
+  font-size: 1.15rem;
+  font-weight: bold;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 18px;
+  padding: 18px 18px;
+  cursor: pointer;
+  box-shadow: 0 1px 8px #0001;
+  transition: background 0.18s, color 0.18s, transform 0.18s;
+}
+
+.volentier {
+  background-color: #43A047;
+  color: #fff;
+}
+.volentier2 {
+  background-color: #fff;
+  color: #43A047;
+  border: 2px solid #43A047;
+}
+
+.volentier:hover {
+  background-color: #B56208;
+  color: #fff;
+  transform: scale(0.97);
+  border: 2px solid #B56208;
+}
+.volentier2:hover {
+  background-color: #B56208;
+  color: #fff;
+  transform: scale(0.97);
+  border: 2px solid #B56208;
+}
+
+.volentier .img1, .volentier2 .img1 {
+  width: 36px;
+  height: 36px;
   object-fit: contain;
   background: white;
   border-radius: 50%;
   padding: 4px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  border: 1.5px solid #43A047;
+}
+
+.volentier .img2, .volentier2 .img2 {
   display: none;
 }
 
-.volentier2{
-    background-color: white;
-    width: 23vw;
-    height: 20vh;
-     margin-left: 26vw;
-    margin-top: 52vh;
-     position: absolute;
-     border-radius: 20px;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     color: #43A047;
-     border: 2px solid #43A047;
+.alredy {
+  margin-top: 28px;
+  text-align: left;
 }
 
-.volentier2 .img1{
- position: absolute;
-  top: 40px;   /* या 0px, जैसा दिखाना हो */
-  left: 7px;  /* या 0px */
-  width: 30px;
-  height: 30px;
-  object-fit: contain;
-  background: white;
-  border-radius: 50%;
-  padding: 4px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+.alredy p {
+  display: inline-block;
+  margin-right: 10px;
+  color: #222;
+  font-size: 1rem;
 }
 
-.volentier2 .img2{
- position: absolute;
-  top: 20px;   /* या 0px, जैसा दिखाना हो */
-  left: 300px;  /* या 0px */
-  width: 30px;
-  height: 30px;
-  object-fit: contain;
-  background: white;
-  border-radius: 50%;
-  padding: 4px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  display: none;
+.alredy .h5 {
+  background-color: #43A047;
+  color: #fff;
+  border: none;
+  border-radius: 16px;
+  padding: 6px 24px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
-
-
-
-
-.volentier2:hover
-{
-    background-color:#B56208;
-    color: white;
-     transform: scale(0.9)
-}
-.volentier:hover
-{
-    background-color:#B56208;
-    color: white;
-    border: 2px solid #B56208;
-    transform: scale(0.9)
-}
-.alredy p{
-     margin-left: 26vw;
-    margin-top: 82vh;
-    color: black;
-    position: absolute;
-}
-.alredy .h5{
-     margin-left: 38vw;
-    margin-top: 81vh;
-    color: #10379A;
-    position: absolute;
-    background-color: #F5F5F5;
-}
-.alredy .button1{
-     margin-left: 43vw;
-    margin-top: 81vh;
-    border-radius: 20px;
-    color: #080d18;
-    position: absolute;
-    background-color: #43A047;
+.alredy .h5:hover {
+  background-color: #B56208;
 }
 
-
+/* Responsive Styles */
+@media (max-width: 700px) {
+  .box {
+    flex-direction: column;
+    min-width: 0;
+    max-width: 98vw;
+    min-height: 0;
+  }
+  .cowimg {
+    min-width: 0;
+    width: 100%;
+    height: 120px;
+  }
+  .cowimg .main-img {
+    border-radius: 20px 20px 0 0;
+    height: 120px;
+  }
+  .signup-content {
+    padding: 15px 6px;
+  }
+  .volentier, .volentier2 {
+    font-size: 1rem;
+    padding: 13px 10px;
+  }
+}

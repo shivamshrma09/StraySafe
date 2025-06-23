@@ -16,7 +16,7 @@ body {
 
 /* Navbar */
 .navbar {
-   background: #fff;
+  background: #fff;
   color: white;
   width: 100vw;
   height: 60px;
@@ -46,7 +46,7 @@ body {
   font-weight: bold;
   font-size: 1.4rem;
   letter-spacing: 1px;
-  margin-bottom: 300px;
+  /* margin-bottom: 300px;  <-- Don't use huge negative margins! */
 }
 .rightnav ul {
   display: flex;
@@ -62,38 +62,26 @@ body {
   border-radius: 50%;
 }
 
-.info{
-    color: black;
-    margin-top: -200PX;
-    margin-left: 100px;
+.info {
+  color: #222;
+  margin: 18px 0;
+  text-align: center;
 }
 
-
-
-
-
-
-
-
-
-.signup-btn {
-  background: white;
-  color: #2f855a;
-  border: none;
+.error {
+  color: #d32f2f;
+  background: #ffeaea;
+  padding: 8px 14px;
+  margin: 14px 0;
   border-radius: 6px;
-  padding: 7px 18px;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 1px 4px #c6f6d5;
-  margin-left: 8px;
+  text-align: center;
 }
 
+/* Remove negative margins */
 .table-container {
   padding: 20px;
   max-width: 1200px;
-
-
-  margin: -200px 100px;
+  margin: 24px auto 0 auto;
   background: #ffffff;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -109,7 +97,7 @@ h2 {
   width: 100%;
   border-collapse: collapse;
   font-size: 16px;
-  background-color: #342e2e;
+  background-color: #fff;
 }
 
 .styled-table th,
@@ -149,4 +137,33 @@ h2 {
 .dash-status.resolved {
   background-color: #d4edda;
   color: #155724;
+}
+
+/* Responsive design */
+@media (max-width: 900px) {
+  .table-container {
+    width: 98vw;
+    max-width: 98vw;
+    padding: 5px;
+  }
+  .styled-table th,
+  .styled-table td {
+    font-size: 13px;
+    padding: 6px 7px;
+  }
+}
+
+@media (max-width: 700px) {
+  .table-container {
+    padding: 2px;
+    margin: 8px 0 0 0;
+  }
+  .styled-table th,
+  .styled-table td {
+    font-size: 11px;
+    padding: 3px 4px;
+  }
+  h2 {
+    font-size: 1.1rem;
+  }
 }

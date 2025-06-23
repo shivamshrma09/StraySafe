@@ -49,7 +49,7 @@ export default function Login() {
         <img className="logo-img" src="whatsapp.jpg" alt="Logo" loading="lazy" />
       </div>
       <div className="login-content">
-        <h4 className="brand">StraySafe</h4>
+        <div className="brand">StraySafe</div>
         <h2>Login to your account</h2>
         <p>Welcome back! Please login to continue.</p>
         <form className="login-form" onSubmit={handleSubmit} autoComplete="off">
@@ -60,6 +60,7 @@ export default function Login() {
             value={form.email}
             onChange={handleChange}
             autoFocus
+            required
           />
           <input
             type="password"
@@ -67,6 +68,7 @@ export default function Login() {
             placeholder="Password"
             value={form.password}
             onChange={handleChange}
+            required
           />
           {error && <span className="form-error">{error}</span>}
           <button type="submit" disabled={loading}>
