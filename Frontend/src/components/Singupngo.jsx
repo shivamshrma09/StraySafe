@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Singupvol.css";
 
-const SignupForm = ({ onSubmit }) => {
+const SignupForm = () => {
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -12,16 +12,19 @@ const SignupForm = ({ onSubmit }) => {
     confirmPassword: "",
   });
   const [errors, setErrors] = useState({});
+  const [apiError, setApiError] = useState("");
+  const [success, setSuccess] = useState(false);
 
   const validate = () => {
     const newErrors = {};
-    if (!form.firstName.trim()) newErrors.firstName = "First name is required";
-    if (!form.lastName.trim()) newErrors.lastName = "Last name is required";
+    if (!form.firstName.trim()) newErrors.firstName = "NGO Name is required";
+    if (!form.lastName.trim()) newErrors.lastName = "Registration number is required";
     if (!form.email.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/))
       newErrors.email = "Valid email is required";
     if (!form.phone.match(/^\d{10}$/))
       newErrors.phone = "10-digit phone required";
-    if (!form.gender) newErrors.gender = "Gender required";
+    // Gender is optional for NGO, uncomment if you want to require it
+    // if (!form.gender) newErrors.gender = "Gender required";
     if (form.password.length < 6)
       newErrors.password = "Min 6 characters";
     if (form.password !== form.confirmPassword)
@@ -32,13 +35,33 @@ const SignupForm = ({ onSubmit }) => {
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+    setApiError("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validate()) {
-      if (onSubmit) onSubmit(form);
-      // setForm({ ...initialState }); // Reset if needed
+    if (!validate()) return;
+    try {
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+          ...form, 
+          role: "ngo" 
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setApiError(data.message || "Signup failed");
+        setSuccess(false);
+        return;
+      }
+      setSuccess(true);
+      setApiError("");
+      // Optionally: window.location.href = "/login";
+    } catch (err) {
+      setApiError("Network error");
+      setSuccess(false);
     }
   };
 
@@ -50,11 +73,10 @@ const SignupForm = ({ onSubmit }) => {
       </div>
       <h4 className='h4'>StraySafe</h4>
       <div className='content'>
-        <h2>← Sign up as Volunteer</h2>
+        <h2>← Sign up as NGO</h2>
         <p>Join us to help stray animals and make a difference in your community!</p>
       </div>
       <form className="signup-form" onSubmit={handleSubmit} autoComplete="off">
-       
         <div className="form-row">
           <div>
             <label>NGO Name</label>
@@ -63,14 +85,14 @@ const SignupForm = ({ onSubmit }) => {
               value={form.firstName}
               onChange={handleChange}
               type="text"
-              placeholder="First Name"
+              placeholder="NGO Name"
             />
             {errors.firstName && <span className="error">{errors.firstName}</span>}
           </div>
           <div>
-            <label>Registretion Number</label>
+            <label>Registration Number</label>
             <input
-              name="Registrationnumber"
+              name="lastName"
               value={form.lastName}
               onChange={handleChange}
               type="text"
@@ -101,8 +123,9 @@ const SignupForm = ({ onSubmit }) => {
           />
           {errors.phone && <span className="error">{errors.phone}</span>}
         </div>
-        <div>
-          {/* <label>Gender</label>
+        {/* Uncomment gender if you want NGOs to fill it */}
+        {/* <div>
+          <label>Gender</label>
           <select
             name="gender"
             value={form.gender}
@@ -112,9 +135,9 @@ const SignupForm = ({ onSubmit }) => {
             <option value="male">Male</option>
             <option value="female">Female</option>
             <option value="other">Other</option>
-          </select> */}
+          </select>
           {errors.gender && <span className="error">{errors.gender}</span>}
-        </div>
+        </div> */}
         <div>
           <label>Password</label>
           <input
@@ -137,13 +160,14 @@ const SignupForm = ({ onSubmit }) => {
           />
           {errors.confirmPassword && <span className="error">{errors.confirmPassword}</span>}
         </div>
-
         <div className='alredy'>
-        <p>Already have an account?</p>
-        <button className='h5' type="button">Login</button>
-        <button className='button1'>Next</button>
-         <button type="submit">Sign Up</button>
-      </div>
+          <p>Already have an account?</p>
+          <button className='h5' type="button" onClick={()=>window.location.href="/login"}>Login</button>
+          <button className='button1' type="button">Next</button>
+          <button type="submit">Sign Up</button>
+        </div>
+        {apiError && <div className="error">{apiError}</div>}
+        {success && <div className="success">Signup successful! You can now log in.</div>}
       </form>
     </div>
   );

@@ -10,15 +10,30 @@ export default function Login() {
     setError("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Basic Validation
     if (!form.email.trim() || !form.password.trim()) {
       setError("Email and password are required!");
       return;
     }
-    // TODO: Add your login logic here
-    alert("Login Success!\n" + JSON.stringify(form, null, 2));
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.message || "Login failed");
+        return;
+      }
+      // Success: Save token, redirect, etc.
+      localStorage.setItem("token", data.token);
+      alert("Login Success!");
+      // window.location.href = "/voldashboard"; // Example redirect
+    } catch (err) {
+      setError("Network error");
+    }
   };
 
   return (

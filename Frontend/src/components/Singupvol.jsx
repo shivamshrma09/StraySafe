@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Singupvol.css";
 
-const SignupForm = ({ onSubmit }) => {
+const SignupForm = () => {
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -12,6 +12,8 @@ const SignupForm = ({ onSubmit }) => {
     confirmPassword: "",
   });
   const [errors, setErrors] = useState({});
+  const [apiError, setApiError] = useState("");
+  const [success, setSuccess] = useState(false);
 
   const validate = () => {
     const newErrors = {};
@@ -32,13 +34,30 @@ const SignupForm = ({ onSubmit }) => {
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+    setApiError("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validate()) {
-      if (onSubmit) onSubmit(form);
-      // setForm({ ...initialState }); // Reset if needed
+    if (!validate()) return;
+    try {
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, role: "volunteer" }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setApiError(data.message || "Signup failed");
+        setSuccess(false);
+        return;
+      }
+      setSuccess(true);
+      setApiError("");
+      // Optionally: window.location.href = "/login";
+    } catch (err) {
+      setApiError("Network error");
+      setSuccess(false);
     }
   };
 
@@ -50,11 +69,10 @@ const SignupForm = ({ onSubmit }) => {
       </div>
       <h4 className='h4'>StraySafe</h4>
       <div className='content'>
-        <h2>← Sign up as NGO</h2>
+        <h2>← Sign up as Volunteer</h2>
         <p>Join us to help stray animals and make a difference in your community!</p>
       </div>
       <form className="signup-form" onSubmit={handleSubmit} autoComplete="off">
-       
         <div className="form-row">
           <div>
             <label>First Name</label>
@@ -63,7 +81,7 @@ const SignupForm = ({ onSubmit }) => {
               value={form.firstName}
               onChange={handleChange}
               type="text"
-              placeholder="NGO Name"
+              placeholder="First Name"
             />
             {errors.firstName && <span className="error">{errors.firstName}</span>}
           </div>
@@ -137,13 +155,14 @@ const SignupForm = ({ onSubmit }) => {
           />
           {errors.confirmPassword && <span className="error">{errors.confirmPassword}</span>}
         </div>
-
         <div className='alredy'>
-        <p>Already have an account?</p>
-        <button className='h5' type="button">Login</button>
-        <button className='button1'>Next</button>
-         <button type="submit">Sign Up</button>
-      </div>
+          <p>Already have an account?</p>
+          <button className='h5' type="button" onClick={()=>window.location.href="/login"}>Login</button>
+          <button className='button1' type="button">Next</button>
+          <button type="submit">Sign Up</button>
+        </div>
+        {apiError && <div className="error">{apiError}</div>}
+        {success && <div className="success">Signup successful! You can now log in.</div>}
       </form>
     </div>
   );
