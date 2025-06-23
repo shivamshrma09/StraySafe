@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./Login.css";
 
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -22,7 +21,10 @@ export default function Login() {
       const res = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          email: form.email.trim(),
+          password: form.password,
+        }),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -33,7 +35,7 @@ export default function Login() {
       localStorage.setItem("token", data.token);
       // User role ke hisab se redirect
       if (data.user?.role === "ngo") {
-        window.location.href = "/NGODashboard";
+        window.location.href = "/NGOdashboard";
       } else if (data.user?.role === "admin") {
         window.location.href = "/AdminDashboard";
       } else {
@@ -55,7 +57,6 @@ export default function Login() {
       <div className="login-content">
         <div className="brand">StraySafe</div>
         <h2>Login to your account</h2>
-        <p>Welcome back! Please login to continue.</p>
         <form className="login-form" onSubmit={handleSubmit} autoComplete="off">
           <input
             type="email"
