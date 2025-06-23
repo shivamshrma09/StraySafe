@@ -5,7 +5,7 @@ import Singupvol from "./components/Singupvol.jsx";
 import Singupngo from "./components/Singupngo.jsx";
 import Login from "./components/Login.jsx";
 import VOLdashboard from "./components/VOLdashboard.jsx";
-import Reportanimal from "./components/Reportanimal.jsx";
+// import Reportanimal from "./components/Reportanimal.jsx";
 import NGOdashboard from "./components/NGOdashboard.jsx";
 
 // Note: 
@@ -20,7 +20,7 @@ function App() {
       <Route path="/signupvol" element={<Singupvol />} />
       <Route path="/signupngo" element={<Singupngo />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/voldashboard" element={<VOLdashboard />} />
+      <Route path="/VOLdashboard" element={<VOLdashboard />} />
       <Route path="/Reportanimal" element={<Reportanimal />} />
       <Route path="/ngodashboard" element={<NGOdashboard />} />
     </Routes>

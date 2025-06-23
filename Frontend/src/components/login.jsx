@@ -34,7 +34,7 @@ export default function Login() {
       localStorage.setItem("token", data.token);
       alert("Login Success!");
       // Redirect example: update to your dashboard route as needed
-      window.location.href = "/voldashboard";
+      window.location.href = "/VOLdashboard";
     } catch (err) {
       setError("Network error. Please try again.");
     } finally {

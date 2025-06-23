@@ -42,11 +42,12 @@ const Singupngo = () => {
       const res = await fetch("/api/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-          ngoName: form.ngoName,
-          regNumber: form.regNumber,
+        body: JSON.stringify({
+          firstName: form.ngoName,   // important: backend expects firstName
+          lastName: "",              // backend expects lastName
           email: form.email,
           phone: form.phone,
+          gender: "",                // optional for NGO
           password: form.password,
           role: "ngo"
         }),
@@ -59,7 +60,7 @@ const Singupngo = () => {
       }
       setSuccess(true);
       setApiError("");
-      // Optionally: window.location.href = "/login";
+      // Optionally redirect: window.location.href = "/login";
     } catch (err) {
       setApiError("Network error");
       setSuccess(false);
@@ -70,7 +71,7 @@ const Singupngo = () => {
     <div className='box'>
       <div className="cowimg">
         <img className="main-img" src="Singup.jpg" alt="Signup Visual" />
-        <img className="logo-img" src="whatsapp.jpg" alt="Company Logo" /> 
+        <img className="logo-img" src="whatsapp.jpg" alt="Company Logo" />
       </div>
       <h4 className='h4'>StraySafe</h4>
       <div className='content'>
@@ -148,7 +149,7 @@ const Singupngo = () => {
         </div>
         <div className='alredy'>
           <p>Already have an account?</p>
-          <button className='h5' type="button" onClick={()=>window.location.href="/login"}>Login</button>
+          <button className='h5' type="button" onClick={() => window.location.href = "/login"}>Login</button>
         </div>
         <button type="submit">Sign Up</button>
         {apiError && <div className="error">{apiError}</div>}
