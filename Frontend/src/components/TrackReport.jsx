@@ -18,7 +18,8 @@ export default function TrackReport() {
       const res = await fetch(`/api/reports/${reportId.trim()}`);
       if (!res.ok) throw new Error("Not found");
       const data = await res.json();
-      setReport(data);
+      // Adjust this line if your backend sends { report: {...} }
+      setReport(data.report || data);
     } catch {
       setError("Report not found.");
     } finally {
