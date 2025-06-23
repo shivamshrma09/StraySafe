@@ -5,7 +5,7 @@ import Singupvol from "./components/Singupvol.jsx";
 import Singupngo from "./components/Singupngo.jsx";
 import Login from "./components/Login.jsx";
 import VOLdashboard from "./components/VOLdashboard.jsx";
-// import Reportanimal from "./components/Reportanimal.jsx";
+import Reportanimal from "./components/Reportanimal.jsx";
 import NGOdashboard from "./components/NGOdashboard.jsx";
 
 // Note: 
