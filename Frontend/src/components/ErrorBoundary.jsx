@@ -7,14 +7,12 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    // Update state so the next render shows the fallback UI.
     return { hasError: true, error: error };
   }
 
   componentDidCatch(error, errorInfo) {
-    // You can log error info here or send to monitoring services
-    this.setState({ errorInfo });
-    // Example: logErrorToMyService(error, errorInfo);
+    // Aap chahein to yahan error logging service call bhi kar sakte hain
+    this.setState({ error, errorInfo });
   }
 
   render() {
@@ -24,7 +22,7 @@ class ErrorBoundary extends React.Component {
           <h2 style={{ color: "red" }}>Something went wrong.</h2>
           {this.state.error && (
             <details style={{ whiteSpace: "pre-wrap", color: "#222", marginTop: 16 }}>
-              {this.state.error && this.state.error.toString()}
+              {this.state.error.toString()}
               <br />
               {this.state.errorInfo && this.state.errorInfo.componentStack}
             </details>

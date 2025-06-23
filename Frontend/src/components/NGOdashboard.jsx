@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./NGOdashboard.css";
+
 export default function NGOdashboard() {
   const [activeReports, setActiveReports] = useState([]);
   const [error, setError] = useState("");

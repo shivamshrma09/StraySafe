@@ -29,7 +29,9 @@ exports.createReport = async (req, res) => {
 
 exports.getAllReports = async (req, res) => {
   try {
-    const reports = await Report.find().populate('reportedBy', 'firstName lastName email').populate('rescuedBy', 'firstName lastName email');
+    const reports = await Report.find()
+      .populate('reportedBy', 'firstName lastName email')
+      .populate('rescuedBy', 'firstName lastName email');
     res.json({ reports });
   } catch (err) {
     res.status(500).json({ message: 'Failed to fetch reports', error: err.message });

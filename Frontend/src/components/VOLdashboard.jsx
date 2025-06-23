@@ -11,7 +11,7 @@ const initialForm = {
   confirmPassword: ''
 };
 
-export default function Singupvol() {
+export default function VOLdashboard() {
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
   const [error, setError] = useState('');
