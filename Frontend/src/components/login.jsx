@@ -30,11 +30,15 @@ export default function Login() {
         setLoading(false);
         return;
       }
-      // Success: Save token, redirect, etc.
       localStorage.setItem("token", data.token);
-      alert("Login Success!");
-      // Redirect example: update to your dashboard route as needed
-      window.location.href = "/VOLdashboard";
+      // User role ke hisab se redirect
+      if (data.user?.role === "ngo") {
+        window.location.href = "/NGODashboard";
+      } else if (data.user?.role === "admin") {
+        window.location.href = "/AdminDashboard";
+      } else {
+        window.location.href = "/VOLdashboard";
+      }
     } catch (err) {
       setError("Network error. Please try again.");
     } finally {

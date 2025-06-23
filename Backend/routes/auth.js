@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const authController = require('../controllers/authController'); // Fixed: consistent filename casing
+const authController = require('../controllers/authController');
 
 // Signup route
 router.post('/signup', authController.signup);
