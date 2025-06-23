@@ -1,0 +1,13 @@
+# Prevent nodemon from deleting files by not using any destructive commands in your nodemon config.
+# If you want to ignore certain files or folders from being watched by nodemon, add them to nodemon.json or .nodemonignore.
+
+# Example .nodemonignore
+node_modules/
+logs/
+*.log
+
+# .gitignore example (to prevent tracking files in git, not related to nodemon deleting files)
+node_modules/
+.env
+logs/
+*.log

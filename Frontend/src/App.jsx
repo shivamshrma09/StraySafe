@@ -7,10 +7,7 @@ import Login from "./components/Login.jsx";
 import VOLdashboard from "./components/VOLdashboard.jsx";
 import Reportanimal from "./components/Reportanimal.jsx";
 import NGOdashboard from "./components/NGOdashboard.jsx";
-
-// Note: 
-// - Use exact component names as your actual files (case sensitive!)
-// - If you use "Reportanimal", rename it to "ReportStrayForm" everywhere for consistency.
+// import NotFound from "./components/NotFound.jsx"; // If you create a 404 page
 
 function App() {
   return (
@@ -20,9 +17,10 @@ function App() {
       <Route path="/signupvol" element={<Singupvol />} />
       <Route path="/signupngo" element={<Singupngo />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/VOLdashboard" element={<VOLdashboard />} />
-      <Route path="/Reportanimal" element={<Reportanimal />} />
+      <Route path="/voldashboard" element={<VOLdashboard />} />
+      <Route path="/reportanimal" element={<Reportanimal />} />
       <Route path="/ngodashboard" element={<NGOdashboard />} />
+      {/* <Route path="*" element={<NotFound />} /> */}
     </Routes>
   );
 }

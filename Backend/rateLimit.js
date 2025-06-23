@@ -1,0 +1,13 @@
+let userLastReport = {};
+
+function rateLimit(req, res, next) {
+  const ip = req.ip;
+  const now = Date.now();
+  if (userLastReport[ip] && now - userLastReport[ip] < 2 * 60 * 1000) {
+    return res.status(429).send("You can only submit one report every 2 minutes.");
+  }
+  userLastReport[ip] = now;
+  next();
+}
+
+module.exports = rateLimit;
