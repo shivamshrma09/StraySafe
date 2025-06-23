@@ -1,7 +1,7 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
-// Generate JWT token
+// JWT generate function
 const generateToken = (user) => {
   return jwt.sign(
     { id: user._id, role: user.role },
@@ -51,14 +51,10 @@ exports.login = async (req, res) => {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
-    const user = await User.findOne({ email });
+    // Password field ko select karna zaruri hai
+    const user = await User.findOne({ email }).select('+password');
     if (!user) {
       return res.status(400).json({ message: 'Invalid credentials' });
-    }
-
-    // Make sure comparePassword exists on User model
-    if (typeof user.comparePassword !== 'function') {
-      return res.status(500).json({ message: 'Password comparison not implemented' });
     }
 
     const isMatch = await user.comparePassword(password);

@@ -2,10 +2,8 @@ const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/authController');
 
-// Signup route
-router.post('/signup', authController.signup);
-
-// Login route
+// Sahi tarike se controller methods ko pass karein
 router.post('/login', authController.login);
+router.post('/signup', authController.signup);
 
 module.exports = router;
