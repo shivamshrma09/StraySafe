@@ -2,7 +2,6 @@ import React from "react";
 import "./Singup.css";
 
 export default function Singup() {
-  // Navigation (replace with useNavigate from react-router-dom if you use it)
   const handleVolunteerSignup = () => {
     window.location.href = "/signupvol";
   };
@@ -14,40 +13,36 @@ export default function Singup() {
   };
 
   return (
-    <div className="box">
-      <div className="cowimg">
-        <img className="main-img" src="Singup.jpg" alt="Signup Visual" />
-        <img className="logo-img" src="whatsapp.jpg" alt="Company Logo" />
-      </div>
-      <div className="signup-content">
-        <div className="brand">StraySafe</div>
-        <h2>Create a new account</h2>
-        <p>
-          Create your StraySafe account to join a community<br />
-          working for animal safety. Start reporting,<br />
-          tracking, and making a positive impact today.
-        </p>
-        <button className="volentier" onClick={handleVolunteerSignup}>
-          <img
-            className="img1"
-            src="volenteer-removebg-preview.png"
-            alt="Volunteer"
-          />
-          Sign up as a Volunteer
-        </button>
-        <button className="volentier2" onClick={handleNGOSignup}>
-          <img
-            className="img1"
-            src="ngo-removebg-preview.png"
-            alt="NGO"
-          />
-          Sign up as a NGO
-        </button>
-        <div className="alredy">
-          <p>Already have an account?</p>
-          <button className="h5" onClick={handleLogin}>
-            Login
+    <div className="signup-outer">
+      <div className="signup-card">
+        <div className="signup-imgside">
+          <div className="signup-img-brand">
+            <img src="whatsapp.jpg" alt="Logo" className="signup-logo" />
+            <span className="signup-brand">StraySafe</span>
+          </div>
+          <img src="Singup.jpg" alt="Cow" className="signup-cowimg" />
+        </div>
+        <div className="signup-formside">
+          <h2 className="signup-title">Create a new account</h2>
+          <p className="signup-desc">
+            Create your StraySafe account to join a community<br />
+            working for animal safety. Start reporting,<br />
+            tracking, and making a positive impact today.
+          </p>
+          <button className="signup-btn-primary" onClick={handleVolunteerSignup}>
+            Sign up as a Volunteer
           </button>
+          <button className="signup-btn-outline" onClick={handleNGOSignup}>
+            Sign up as an NGO
+          </button>
+          <div className="signup-bottom-row">
+            <span>
+              Already have an account?{" "}
+              <span className="signup-login-link" onClick={handleLogin}>
+                Login
+              </span>
+            </span>
+          </div>
         </div>
       </div>
     </div>

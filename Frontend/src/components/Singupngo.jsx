@@ -7,6 +7,7 @@ const Singupngo = () => {
     regNumber: "",
     email: "",
     phone: "",
+    gender: "",
     password: "",
     confirmPassword: "",
   });
@@ -17,18 +18,12 @@ const Singupngo = () => {
   const validate = () => {
     const newErrors = {};
     if (!form.ngoName.trim()) newErrors.ngoName = "NGO Name is required";
-    if (!form.regNumber.trim())
-      newErrors.regNumber = "Registration number is required";
-    if (
-      !form.email.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/)
-    )
-      newErrors.email = "Valid email is required";
-    if (!form.phone.match(/^\d{10}$/))
-      newErrors.phone = "10-digit phone required";
-    if (form.password.length < 6)
-      newErrors.password = "Min 6 characters";
-    if (form.password !== form.confirmPassword)
-      newErrors.confirmPassword = "Passwords do not match";
+    if (!form.regNumber.trim()) newErrors.regNumber = "Registration number is required";
+    if (!form.email.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/)) newErrors.email = "Valid email is required";
+    if (!form.phone.match(/^\d{10}$/)) newErrors.phone = "10-digit phone required";
+    if (!form.gender) newErrors.gender = "Gender is required";
+    if (form.password.length < 6) newErrors.password = "Min 6 characters";
+    if (form.password !== form.confirmPassword) newErrors.confirmPassword = "Passwords do not match";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -46,11 +41,11 @@ const Singupngo = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          firstName: form.ngoName,   // important: backend expects firstName
-          lastName: form.regNumber,  // pass regNumber as lastName for backend
+          firstName: form.ngoName,
+          lastName: form.regNumber,
           email: form.email,
           phone: form.phone,
-          gender: "",                // optional for NGO
+          gender: form.gender,
           password: form.password,
           role: "ngo"
         }),
@@ -63,7 +58,6 @@ const Singupngo = () => {
       }
       setSuccess(true);
       setApiError("");
-      // Optionally redirect: window.location.href = "/login";
     } catch (err) {
       setApiError("Network error");
       setSuccess(false);
@@ -76,14 +70,18 @@ const Singupngo = () => {
         <img className="main-img" src="Singup.jpg" alt="Signup Visual" />
         <img className="logo-img" src="whatsapp.jpg" alt="Company Logo" />
       </div>
-      <h4 className="h4">StraySafe</h4>
-      <div className="content">
-        <h2>← Sign up as NGO</h2>
-        <p>
-          Join us to help stray animals and make a difference in your community!
-        </p>
-      </div>
       <form className="signup-form" onSubmit={handleSubmit} autoComplete="off">
+        <div className="signup-header">
+          <button
+            className="signup-arrow"
+            type="button"
+            aria-label="Go back"
+            onClick={() => window.history.back()}
+          >
+            &#8592;
+          </button>
+          <h2 style={{ margin: 0 }}>Sign up as NGO</h2>
+        </div>
         <div className="form-row">
           <div style={{ flex: 1 }}>
             <label>NGO Name</label>
@@ -94,9 +92,7 @@ const Singupngo = () => {
               type="text"
               placeholder="NGO Name"
             />
-            {errors.ngoName && (
-              <span className="error">{errors.ngoName}</span>
-            )}
+            {errors.ngoName && <span className="error">{errors.ngoName}</span>}
           </div>
           <div style={{ flex: 1 }}>
             <label>Registration Number</label>
@@ -107,13 +103,11 @@ const Singupngo = () => {
               type="text"
               placeholder="Reg. Number"
             />
-            {errors.regNumber && (
-              <span className="error">{errors.regNumber}</span>
-            )}
+            {errors.regNumber && <span className="error">{errors.regNumber}</span>}
           </div>
         </div>
         <div>
-          <label>Organisation Email</label>
+          <label>Email</label>
           <input
             name="email"
             value={form.email}
@@ -124,7 +118,7 @@ const Singupngo = () => {
           {errors.email && <span className="error">{errors.email}</span>}
         </div>
         <div>
-          <label>Phone Number</label>
+          <label>Phone</label>
           <input
             name="phone"
             value={form.phone}
@@ -133,6 +127,37 @@ const Singupngo = () => {
             placeholder="Phone Number"
           />
           {errors.phone && <span className="error">{errors.phone}</span>}
+        </div>
+        <div className="gender-row">
+          <label>Gender</label>
+          <label>
+            <input
+              type="radio"
+              name="gender"
+              value="male"
+              checked={form.gender === "male"}
+              onChange={handleChange}
+            /> Male
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="gender"
+              value="female"
+              checked={form.gender === "female"}
+              onChange={handleChange}
+            /> Female
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="gender"
+              value="other"
+              checked={form.gender === "other"}
+              onChange={handleChange}
+            /> Other
+          </label>
+          {errors.gender && <span className="error">{errors.gender}</span>}
         </div>
         <div>
           <label>Password</label>
@@ -154,25 +179,30 @@ const Singupngo = () => {
             type="password"
             placeholder="Confirm Password"
           />
-          {errors.confirmPassword && (
-            <span className="error">{errors.confirmPassword}</span>
-          )}
+          {errors.confirmPassword && <span className="error">{errors.confirmPassword}</span>}
         </div>
         <div className="alredy">
           <p>Already have an account?</p>
           <button
             className="h5"
             type="button"
+            style={{
+              background: "none",
+              color: "#1976d2",
+              padding: 0,
+              fontWeight: 500,
+              border: "none",
+              borderRadius: 0,
+              cursor: "pointer"
+            }}
             onClick={() => (window.location.href = "/login")}
           >
             Login
           </button>
         </div>
-        <button type="submit">Sign Up</button>
+        <button type="submit">Next</button>
         {apiError && <div className="error">{apiError}</div>}
-        {success && (
-          <div className="success">Signup successful! You can now log in.</div>
-        )}
+        {success && <div className="success">Signup successful! You can now log in.</div>}
       </form>
     </div>
   );

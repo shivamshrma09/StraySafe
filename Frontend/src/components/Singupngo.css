@@ -1,131 +1,204 @@
-.box {
-  background-color: #F5F5F5;
-  width: 95vw;
-  max-width: 800px;
-  min-height: 600px;
-  margin: 40px auto 0 auto;
-  border-radius: 20px;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 4px 24px #0001;
-  display: flex;
-  flex-direction: row;
+body {
+  background: #222;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
 }
 
+/* Main container */
+.box {
+  background: #F5F5F5;
+  width: 800px;
+  max-width: 95vw;
+  min-height: 400px;
+  margin: 40px auto 0 auto;
+  border-radius: 20px;
+  display: flex;
+  box-shadow: 0 4px 24px #0001;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Left image section */
 .cowimg {
-  flex: 1 1 220px;
-  min-width: 180px;
-  background-color: #F5F5F5;
+  flex: 1 1 320px;
+  min-width: 260px;
+  background: #f5f5f5;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   position: relative;
-  min-height: 320px;
+  min-height: 600px;
+  border-radius: 20px 0 0 20px;
+  margin: 20px 20px 20px 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  border: 1px solid #0a0909;
+  overflow: hidden;
 }
+
 .cowimg .main-img {
   width: 100%;
-  height: 220px;
+  height: 100%;
   object-fit: cover;
   border-radius: 20px 0 0 20px;
+  min-height: 600px;
 }
 
 .cowimg .logo-img {
   position: absolute;
   top: 18px;
   left: 18px;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   object-fit: contain;
   background: white;
   border-radius: 50%;
   padding: 4px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   border: 2px solid #B56208;
+  z-index: 2;
 }
 
-.h4 {
+.cowimg .brand {
+  position: absolute;
+  top: 20px;
+  left: 72px;
   color: #B56208;
-  margin-left: 18vw;
-  margin-top: 2vh;
-  z-index: 3;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: bold;
-  position: absolute;
+  z-index: 2;
+  letter-spacing: 0.5px;
 }
 
-.content {
-  position: absolute;
-  left: 35vw;
-  top: 2vh;
-  z-index: 3;
-  width: 52vw;
-  max-width: 420px;
-}
-
-.content h2 {
-  color: #171010;
-  font-size: 2rem;
-  font-weight: bold;
-  margin: 0 0 6px 0;
-}
-
-.content p {
-  color: #555555;
-  font-size: 1.07rem;
-  margin: 6px 0 0 0;
-  font-weight: 500;
-}
-
+/* Right form section */
 .signup-form {
-  flex: 2 1 380px;
-  max-width: 400px;
-  margin: 120px auto 0 auto;
-  padding: 24px 32px 18px 32px;
-  border-radius: 12px;
-  font-family: 'Segoe UI', sans-serif;
-  background: #fff;
-  position: relative;
-  z-index: 4;
-  box-shadow: 0 2px 16px #0001;
+  flex: 2 1 400px;
+  max-width: 440px;
+  width: 100%;
+  padding: 40px 32px 24px 32px;
+  background: #F5F5F5;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  justify-content: center;
+  border-radius: 0 20px 20px 0;
+  box-shadow: none;
+  position: relative;
+  z-index: 1;
+  margin: 20px 20px 20px 0;
 }
 
-.signup-form h2 {
-  text-align: center;
+/* Ensure brand name is visible next to logo */
+.cowimg .brand {
+  display: block;
+  position: absolute;
+  top: 20px;
+  left: 72px;
+  color: #B56208;
+  font-size: 1.2rem;
+  font-weight: bold;
+  z-index: 2;
+  letter-spacing: 0.5px;
+  background: transparent;
+  padding: 0 8px;
+  white-space: nowrap;
+}
+
+.signup-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   margin-bottom: 18px;
 }
 
-.signup-form .form-row {
+.signup-arrow {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #171010;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 6px 0 0;
+  outline: none;
+  transition: color 0.2s;
+}
+
+.signup-header h2 {
+  color: #171010;
+  font-size: 1.45rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.form-row {
   display: flex;
   gap: 12px;
+  margin-bottom: 10px;
 }
 
 .signup-form label {
   display: block;
-  margin-bottom: 2px;
-  color: #555555;
+  margin-bottom: 3px;
+  color: #171010;
   font-weight: 500;
-  font-size: 0.98rem;
+  font-size: 1rem;
 }
 
-.signup-form input,
-.signup-form select {
+.signup-form input[type="text"],
+.signup-form input[type="email"],
+.signup-form input[type="tel"],
+.signup-form input[type="password"] {
   width: 100%;
-  padding: 8px 10px;
-  margin-bottom: 7px;
-  border: 1px solid #cfd8dc;
-  border-radius: 6px;
-  font-size: 15px;
+  padding: 7px 10px;
+  margin-bottom: 8px;
+  border: 1.2px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
   outline: none;
   transition: border 0.2s;
+  background: #fafafa;
 }
 
-.signup-form input:focus,
-.signup-form select:focus {
-  border-color: #1976d2;
+.signup-form input:focus {
+  border-color: #43A047;
+  background: #fff;
+}
+
+.gender-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.gender-row label {
+  margin: 0 6px 0 0;
+  font-weight: 500;
+  color: #555;
+  font-size: 1rem;
+}
+
+.gender-row input[type="radio"] {
+  margin-right: 4px;
+  accent-color: #43A047;
+}
+
+.gender-row .gender-btn {
+  border: 1px solid #ccc;
+  background: #fafafa;
+  border-radius: 8px;
+  padding: 4px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-right: 4px;
+  transition: background 0.2s, border 0.2s;
+}
+
+.gender-row .gender-btn.selected,
+.gender-row .gender-btn:focus {
+  border: 1.5px solid #43A047;
+  background: #e7f9ef;
 }
 
 .signup-form .error {
@@ -134,6 +207,7 @@
   margin-bottom: 6px;
   display: block;
 }
+
 .signup-form .success {
   color: #43A047;
   background: #e7f9ef;
@@ -145,50 +219,54 @@
 }
 
 .signup-form button[type="submit"] {
-  width: 100%;
-  height: 40px;
-  padding: 10px;
+  width: 90px;
+  height: 36px;
   background: #43A047;
   color: #fff;
-  font-size: 16px;
+  font-size: 1rem;
   border: none;
-  border-radius: 6px;
+  border-radius: 7px;
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 8px;
+  margin-left: 8px;
   transition: background 0.2s;
 }
 
 .signup-form button[type="submit"]:hover {
-  background-color: #B56208;
-  color: #fff;
+  background: #388e3c;
 }
 
+/* Login link */
 .alredy {
-  margin: 8px 0 0 0;
-  text-align: center;
-}
-.alredy p {
-  display: inline-block;
-  margin-right: 10px;
-  color: #222;
-  font-size: 1rem;
-}
-.alredy .h5 {
-  background-color: #43A047;
-  color: #fff;
-  border: none;
-  border-radius: 16px;
-  padding: 6px 24px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
-  margin-left: 0;
-  font-size: 1rem;
-}
-.alredy .h5:hover {
-  background-color: #B56208;
+  margin: 10px 0 0 0;
+  text-align: left;
+  font-size: 0.98rem;
 }
 
+.alredy p {
+  display: inline;
+  color: #222;
+  margin-right: 6px;
+}
+
+.alredy .login-link {
+  color: #1976d2;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.alredy .login-link:hover {
+  text-decoration: underline;
+  color: #388e3c;
+}
+
+/* Responsive Design */
 @media (max-width: 900px) {
   .box {
     flex-direction: column;
@@ -196,34 +274,63 @@
     max-width: 98vw;
     min-height: 0;
     height: auto;
+    border-radius: 18px;
   }
   .cowimg {
     min-width: 0;
     width: 100%;
-    height: 120px;
-    border-radius: 20px 20px 0 0;
+    margin: 20px 0 0 20px;
+    height: 180px;
+    border-radius: 18px 18px 0 0;
+    min-height: 180px;
   }
   .cowimg .main-img {
-    border-radius: 20px 20px 0 0;
-    height: 120px;
-  }
-  .h4 {
-    margin-left: 4vw;
-    margin-top: 5vh;
-    position: relative;
-  }
-  .content {
-    position: static;
-    left: unset; top: unset;
-    width: 98vw;
-    max-width: 98vw;
-    margin: 0 auto 12px auto;
-    padding: 0 6px;
+    border-radius: 18px 18px 0 0;
+    height: 180px;
+    min-height: 180px;
   }
   .signup-form {
-    margin: 18px auto 0 auto;
-    padding: 16px 8px;
+    margin: 0 auto;
+    padding: 24px 8px;
     max-width: 97vw;
     width: 97vw;
+    border-radius: 0 0 18px 18px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 600px) {
+  .box {
+    width: 96vw;
+    max-width: 96vw;
+    border-radius: 10px;
+    margin: 10px auto 0 auto;
+  }
+  .cowimg {
+    margin: 10px 0 0 10px;
+    border-radius: 10px 10px 0 0;
+  }
+  .cowimg .main-img {
+    border-radius: 10px 10px 0 0;
+  }
+  .signup-form {
+    padding: 16px 6px;
+    border-radius: 0 0 10px 10px;
+    text-align: left;
+  }
+  .signup-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .signup-form {
+    padding: 18px 4px;
+    border-radius: 0;
+  }
+  .cowimg {
+    border-radius: 0;
+  }
+  .cowimg .main-img {
+    border-radius: 0;
   }
 }

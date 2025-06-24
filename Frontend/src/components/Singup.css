@@ -1,185 +1,211 @@
-.box {
-  background-color: #F5F5F5;
-  width: 95vw;
-  max-width: 700px;
-  margin: 40px auto;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: row;
-  box-shadow: 0 2px 12px #0001;
-  overflow: hidden;
-  min-height: 550px;
-  position: relative;
+.signup-outer {
+  min-height: 100vh;
+  background: #fff;  
+    display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.cowimg {
-  flex: 1 1 220px;
-  background-color: #F5F5F5;
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f5f5f5;
+}
+
+.signup-card {
+  display: flex;
+  background: #fff;
+  border-radius: 18px;
+  max-width: 965px;
+  min-height: 540px;
+  box-shadow: 0 4px 32px #0002;
+  overflow: hidden;
+  max-width: 750px;
+  width: 100%;
+}
+
+.signup-imgside {
+  position: relative;
+  width: 320px;
+  min-width: 220px;
+  background: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  position: relative;
-  min-width: 180px;
-  min-height: 320px;
+  border-radius: 18px 0 0 18px;
+  overflow: hidden;
+  justify-content: flex-start;
 }
 
-.cowimg .main-img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 20px 0 0 20px;
-}
-
-.cowimg .logo-img {
+.signup-img-brand {
   position: absolute;
   top: 18px;
   left: 18px;
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-  background: white;
-  border-radius: 50%;
-  padding: 4px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  border: 2px solid #B56208;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 2;
 }
 
-.signup-content {
-  flex: 2 1 320px;
+.signup-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #B56208;
+  object-fit: contain;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.14);
+}
+
+.signup-brand {
+  color: #B56208;
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.signup-cowimg {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 18px 0 0 18px;
+  margin-top: 0;
+}
+
+.signup-formside {
+  flex: 1;
+  padding: 38px 36px 32px 36px;
+  background: #fff;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 30px 24px 24px 24px;
-  position: relative;
 }
 
-.brand {
-  color: #B56208;
-  font-size: 1.5rem;
+.signup-title {
+  font-size: 1.4rem;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
-.signup-content h2 {
-  color: #171010;
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.signup-content p {
-  color: #555555;
-  font-size: 1.1rem;
+.signup-desc {
+  color: #444;
+  font-size: 1.02rem;
   margin-bottom: 26px;
-  font-weight: normal;
+  margin-top: 0;
 }
 
-.volentier, .volentier2 {
+.signup-btn-primary {
   width: 100%;
-  min-height: 80px;
+  background: #43A047;
+  color: #fff;
+  font-size: 1.08rem;
+  font-weight: 500;
   border: none;
-  border-radius: 16px;
-  font-size: 1.15rem;
-  font-weight: bold;
-  margin: 10px 0;
+  border-radius: 10px;
+  padding: 16px 0;
+  margin-bottom: 14px;
+  cursor: pointer;
+  transition: background 0.16s;
+}
+
+.signup-btn-primary:hover {
+  background: #388e3c;
+}
+
+.signup-btn-outline {
+  width: 100%;
+  background: #fff;
+  color: #43A047;
+  font-size: 1.08rem;
+  font-weight: 500;
+  border: 2px solid #43A047;
+  border-radius: 10px;
+  padding: 16px 0;
+  margin-bottom: 22px;
+  cursor: pointer;
+  transition: background 0.16s, color 0.16s;
+}
+
+.signup-btn-outline:hover {
+  background: #43A047;
+  color: #fff;
+}
+
+.signup-bottom-row {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 18px;
-  padding: 18px 18px;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.signup-login-link {
+  color: #1976d2;
   cursor: pointer;
-  box-shadow: 0 1px 8px #0001;
-  transition: background 0.18s, color 0.18s, transform 0.18s;
+  text-decoration: underline;
+  margin-left: 2px;
 }
 
-.volentier {
-  background-color: #43A047;
-  color: #fff;
-}
-.volentier2 {
-  background-color: #fff;
-  color: #43A047;
-  border: 2px solid #43A047;
-}
-
-.volentier:hover {
-  background-color: #B56208;
-  color: #fff;
-  transform: scale(0.97);
-  border: 2px solid #B56208;
-}
-.volentier2:hover {
-  background-color: #B56208;
-  color: #fff;
-  transform: scale(0.97);
-  border: 2px solid #B56208;
-}
-
-.volentier .img1, .volentier2 .img1 {
-  width: 36px;
-  height: 36px;
-  object-fit: contain;
-  background: white;
-  border-radius: 50%;
-  padding: 4px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  border: 1.5px solid #43A047;
-}
-
-.volentier .img2, .volentier2 .img2 {
-  display: none;
-}
-
-.alredy {
-  margin-top: 28px;
-  text-align: left;
-}
-
-.alredy p {
-  display: inline-block;
-  margin-right: 10px;
-  color: #222;
-  font-size: 1rem;
-}
-
-.alredy .h5 {
-  background-color: #43A047;
+.signup-next-btn {
+  background: #43A047;
   color: #fff;
   border: none;
-  border-radius: 16px;
-  padding: 6px 24px;
-  font-weight: 600;
+  border-radius: 8px;
+  padding: 8px 22px;
+  font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.16s;
 }
 
-.alredy .h5:hover {
-  background-color: #B56208;
+.signup-next-btn:hover {
+  background: #388e3c;
 }
 
-/* Responsive Styles */
+/* Responsive */
 @media (max-width: 700px) {
-  .box {
+  .signup-card {
     flex-direction: column;
-    min-width: 0;
     max-width: 98vw;
-    min-height: 0;
+    border-radius: 16px;
   }
-  .cowimg {
-    min-width: 0;
+  .signup-imgside {
     width: 100%;
-    height: 120px;
+    min-width: 0;
+    border-radius: 16px 16px 0 0;
   }
-  .cowimg .main-img {
-    border-radius: 20px 20px 0 0;
-    height: 120px;
+  .signup-cowimg {
+    border-radius: 16px 16px 0 0;
+    height: 210px;
   }
-  .signup-content {
-    padding: 15px 6px;
+  .signup-formside {
+    padding: 22px 8px 18px 8px;
   }
-  .volentier, .volentier2 {
-    font-size: 1rem;
-    padding: 13px 10px;
+}
+
+
+
+
+.signup-cowimg {
+  width: 110%;
+  height: 520px;
+  object-fit: cover;
+  border-radius: 22px 0 0 22px;
+  margin-top: 18px;
+  margin-bottom: 18px;
+  margin-left: 60px;    /* left se margin ab 18px */
+  margin-right: 8px;    /* right se bhi thoda margin (optional) */
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+
+  transition: box-shadow 0.2s;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .signup-cowimg {
+    border-radius: 16px 16px 0 0;
+    width: 100%;
+    height: 240px;
+    margin: 8px 0 12px 0;
+    box-shadow: 0 4px 18px #0002;
   }
 }

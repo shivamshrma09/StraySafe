@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Homepage.css";
 
 export default function Homepage() {
-  // Navigation button handlers (add routing if using react-router)
+  // Navigation button handlers
   const handleReportNow = () => {
     window.location.href = "/report";
   };
@@ -15,11 +15,43 @@ export default function Homepage() {
   const handleSignUp = () => {
     window.location.href = "/signup";
   };
+  const handleNGOJoin = () => {
+    window.location.href = "/ngo-join";
+  };
+
+  // Animated counters for impact stats
+  const [animalsReported, setAnimalsReported] = useState(0);
+  const [rescued, setRescued] = useState(0);
+  const [volunteers, setVolunteers] = useState(0);
+  const [ngos, setNgos] = useState(0);
+
+  useEffect(() => {
+    // Animate counters from 0 to target values
+    const duration = 2000; // 2 seconds
+    const frameDuration = 1000 / 60; // 60 fps
+    const totalFrames = Math.round(duration / frameDuration);
+
+    const easeOutQuad = (t) => t * (2 - t);
+
+    let frame = 0;
+    const animate = () => {
+      frame++;
+      const progress = easeOutQuad(frame / totalFrames);
+      setAnimalsReported(Math.floor(progress * 420));
+      setRescued(Math.floor(progress * 310));
+      setVolunteers(Math.floor(progress * 1200));
+      setNgos(Math.floor(progress * 20));
+      if (frame < totalFrames) {
+        requestAnimationFrame(animate);
+      }
+    };
+    animate();
+  }, []);
 
   return (
     <>
       {/* Navbar */}
-      <nav className="navbar">
+      <nav className="navbar" aria-label="Primary navigation">
         <div className="leftnav">
           <img src="whatsapp.jpg" alt="Whatsapp contact" />
           <span className="brand">StraySafe</span>
@@ -28,11 +60,14 @@ export default function Homepage() {
           <ul>
             <li>Home</li>
             <li>How it works</li>
-            <li style={{ cursor: "pointer" }} onClick={handleLogin}>Login</li>
+            <li style={{ cursor: "pointer" }} onClick={handleLogin} tabIndex={0} role="button" aria-label="Login">Login</li>
             <li>
-              <button className="signup-btn" onClick={handleSignUp}>
+              <button className="signup-btn" onClick={handleSignUp} aria-label="Sign Up">
                 SignUp
               </button>
+            </li>
+            <li>
+             
             </li>
           </ul>
         </div>
@@ -40,7 +75,7 @@ export default function Homepage() {
 
       <main className="main-content">
         {/* Hero */}
-        <section className="hero">
+        <section className="hero" aria-label="Hero section">
           <div className="hero-text">
             <h1>
               Be the Voice for the Voiceless.<br />
@@ -51,12 +86,25 @@ export default function Homepage() {
               No login, no hassle—just instant help, right when it matters.
             </p>
             <div className="hero-btns">
-              <button className="primary-btn" onClick={handleReportNow}>
+              <button
+                className="primary-btn"
+                onClick={handleReportNow}
+                aria-label="Report Now"
+                onMouseDown={e => e.currentTarget.classList.add('btn-clicked')}
+                onMouseUp={e => e.currentTarget.classList.remove('btn-clicked')}
+              >
                 Report Now
               </button>
-              <button className="primary-btn1" onClick={handleLearnMore}>
+              <button
+                className="primary-btn1"
+                onClick={handleLearnMore}
+                aria-label="Learn More"
+                onMouseDown={e => e.currentTarget.classList.add('btn-clicked')}
+                onMouseUp={e => e.currentTarget.classList.remove('btn-clicked')}
+              >
                 Learn More
               </button>
+             
             </div>
           </div>
           <div className="hero-images">
@@ -67,7 +115,7 @@ export default function Homepage() {
         </section>
 
         {/* How it Works */}
-        <section className="howitworks">
+        <section className="howitworks" aria-label="How it works section">
           <h2>How It Works</h2>
           <p>
             Reporting is easy—just capture a live photo, auto-share your location, and submit.
@@ -95,11 +143,14 @@ export default function Homepage() {
           </div>
         </section>
 
-        {/* Track Reports Live */}
-        <section className="tracking">
+        {/* Track Reports Live with placeholder for real-time map */}
+        <section className="tracking" aria-label="Track reports live section">
           <h2>Track Reports Live</h2>
           <div className="tracking-content">
-            <img className="tracking-map" src="map.jpg" alt="Live reports map" loading="lazy" />
+            {/* Placeholder for real-time map updates */}
+            <div className="live-map-placeholder" aria-label="Live reports map placeholder">
+              <p>Interactive map with live updates coming soon...</p>
+            </div>
             <ul>
               <li>
                 <strong>📍 View Real-Time Animal Reports:</strong> <br />
@@ -117,30 +168,42 @@ export default function Homepage() {
           </div>
         </section>
 
-        {/* Our Work */}
-        <section className="ourwork-section">
+        {/* Proof & Security Section */}
+        <section className="proof-security" aria-label="Proof and security section">
+          <h2>How We Prevent Fake Reports</h2>
+          <ul>
+            <li>📸 Camera-only photo submission to block gallery and reused images</li>
+            <li>⏰ EXIF timestamp validation to ensure recent photos</li>
+            <li>📍 EXIF GPS check to cross-validate camera location with browser GPS</li>
+            <li>📌 Proximity check with known animal zones to prevent fake locations</li>
+            <li>🚫 Rate limiting to block spamming from one user/device</li>
+          </ul>
+        </section>
+
+        {/* Our Work with animated counters */}
+        <section className="ourwork-section" aria-label="Our work section">
           <h2 className="ourwork-title">Our Work</h2>
           <p className="ourwork-desc">
             StraySafe’s impact grows with every report—hundreds of animals rescued, action volunteers, and strong NGO partnerships. Together, we’re making cities safer for all.
           </p>
           <div className="ourwork-row">
             <div className="ourwork-card">
-              <div className="ourwork-icon">🐾 420+</div>
+              <div className="ourwork-icon">🐾 <span aria-live="polite" aria-atomic="true">{animalsReported}+</span></div>
               <div className="ourwork-label animals">Animals Reported</div>
               <div className="ourwork-subtext">Citizens have reported over 420 stray animals in need.</div>
             </div>
             <div className="ourwork-card">
-              <div className="ourwork-icon">❤️🐾 310+</div>
+              <div className="ourwork-icon">❤️🐾 <span aria-live="polite" aria-atomic="true">{rescued}+</span></div>
               <div className="ourwork-label rescued">Rescued</div>
               <div className="ourwork-subtext">Our partner NGOs have rescued and cared for 310+ animals.</div>
             </div>
             <div className="ourwork-card">
-              <div className="ourwork-icon">👥 1200+</div>
+              <div className="ourwork-icon">👥 <span aria-live="polite" aria-atomic="true">{volunteers}+</span></div>
               <div className="ourwork-label volunteers">Volunteers</div>
               <div className="ourwork-subtext">More than 1200 volunteers and NGOs are working together.</div>
             </div>
             <div className="ourwork-card">
-              <div className="ourwork-icon">🤝 20+</div>
+              <div className="ourwork-icon">🤝 <span aria-live="polite" aria-atomic="true">{ngos}+</span></div>
               <div className="ourwork-label ngos">NGOs</div>
               <div className="ourwork-subtext">20+ trusted NGOs collaborate for faster, better rescues.</div>
             </div>
@@ -148,7 +211,7 @@ export default function Homepage() {
         </section>
 
         {/* Partner NGOs */}
-        <section className="partners">
+        <section className="partners" aria-label="Partner NGOs section">
           <h2>Partner NGOs</h2>
           <div className="partner-logos">
             <img src="ngo1.jpg" alt="NGO1" loading="lazy" />
@@ -165,7 +228,7 @@ export default function Homepage() {
       </main>
 
       {/* Footer */}
-      <footer className="footer">
+      <footer className="footer" aria-label="Footer">
         <div className="footer-cols">
           <div>
             <h4>Quick Links</h4>

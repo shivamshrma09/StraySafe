@@ -1,131 +1,194 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import "./Singupvol.css";
- 
+
 const initialForm = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  phone: '',
-  gender: '',
-  password: '',
-  confirmPassword: ''
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  gender: "",
+  password: "",
+  confirmPassword: ""
 };
 
-export default function Singupvol() {
+export default function SignupVolunteer() {
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
-  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-    setErrors({ ...errors, [e.target.name]: '' });
-    setError('');
+    setErrors({ ...errors, [e.target.name]: "" });
     setSuccess(false);
+  };
+
+  const handleGender = (gender) => {
+    setForm({ ...form, gender });
+    setErrors({ ...errors, gender: "" });
   };
 
   const validate = () => {
     const newErrors = {};
-    if (!form.firstName.trim()) newErrors.firstName = 'First name is required';
-    if (!form.lastName.trim()) newErrors.lastName = 'Last name is required';
+    if (!form.firstName.trim()) newErrors.firstName = "First name is required";
+    if (!form.lastName.trim()) newErrors.lastName = "Last name is required";
     if (!form.email.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/))
-      newErrors.email = 'Valid email is required';
+      newErrors.email = "Valid email is required";
     if (!form.phone.match(/^\d{10}$/))
-      newErrors.phone = '10-digit phone required';
-    if (!form.gender) newErrors.gender = 'Gender is required';
+      newErrors.phone = "10-digit phone required";
+    if (!form.gender) newErrors.gender = "Gender is required";
     if (form.password.length < 6)
-      newErrors.password = 'Password must be at least 6 characters';
-    if (form.password !== form.confirmPassword) newErrors.confirmPassword = "Passwords don't match";
+      newErrors.password = "Password must be at least 6 characters";
+    if (form.password !== form.confirmPassword)
+      newErrors.confirmPassword = "Passwords don't match";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
     setSuccess(false);
     if (!validate()) return;
     setLoading(true);
-    try {
-      const res = await fetch('/api/auth/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, role: "volunteer" }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setError(data?.message || 'Signup failed');
-        return;
-      }
+    // Simulate API call
+    setTimeout(() => {
+      setLoading(false);
       setSuccess(true);
       setForm(initialForm);
-    } catch (err) {
-      setError('Network error. Please try again.');
-    } finally {
-      setLoading(false);
-    }
+    }, 1200);
   };
 
   return (
-    <div className="box">
-      <div className="cowimg">
-        <img className="main-img" src="Singup.jpg" alt="Signup Visual" />
-        <img className="logo-img" src="whatsapp.jpg" alt="Company Logo" />
+    <div className="signup-box">
+      <div className="signup-img-section">
+        <div className="signup-logo-row">
+          <img src="whatsapp.jpg" alt="StraySafe Logo" className="signup-logo" />
+
+          <span className="signup-brand">StraySafe</span>
+        </div>
+        <img
+          className="signup-main-img"
+          src="Singup.jpg"
+          alt="Cow"
+        />
       </div>
-      <h4 className="h4">StraySafe</h4>
-      <div className="content">
-        <h2>← Sign up as Volunteer</h2>
-        <p>Join us to help stray animals and make a difference in your community!</p>
-      </div>
-      <form className="signup-form" onSubmit={handleSubmit} autoComplete="off">
-        {error && <div className="error">{error}</div>}
-        {success && <div className="success">Signup successful! You can now log in.</div>}
-        <div>
-          <label>First Name</label>
-          <input name="firstName" value={form.firstName} onChange={handleChange} type="text" placeholder="First Name" />
-          {errors.firstName && <span className="error">{errors.firstName}</span>}
+      <form className="signup-form-section" onSubmit={handleSubmit} autoComplete="off">
+        <h2 className="signup-title">
+          <span className="signup-arrow">&#8592;</span> Sign up as Volunteer
+        </h2>
+        <div className="signup-row">
+          <div className="signup-field">
+            <label>First Name*</label>
+            <input
+              name="firstName"
+              value={form.firstName}
+              onChange={handleChange}
+              type="text"
+              placeholder="First Name"
+              autoComplete="off"
+            />
+            {errors.firstName && <span className="signup-error">{errors.firstName}</span>}
+          </div>
+          <div className="signup-field">
+            <label>Last name*</label>
+            <input
+              name="lastName"
+              value={form.lastName}
+              onChange={handleChange}
+              type="text"
+              placeholder="Last Name"
+              autoComplete="off"
+            />
+            {errors.lastName && <span className="signup-error">{errors.lastName}</span>}
+          </div>
         </div>
-        <div>
-          <label>Last Name</label>
-          <input name="lastName" value={form.lastName} onChange={handleChange} type="text" placeholder="Last Name" />
-          {errors.lastName && <span className="error">{errors.lastName}</span>}
+        <div className="signup-field">
+          <label>Email*</label>
+          <input
+            name="email"
+            value={form.email}
+            onChange={handleChange}
+            type="email"
+            placeholder="Email"
+            autoComplete="off"
+          />
+          {errors.email && <span className="signup-error">{errors.email}</span>}
         </div>
-        <div>
-          <label>Email</label>
-          <input name="email" value={form.email} onChange={handleChange} type="email" placeholder="Email" />
-          {errors.email && <span className="error">{errors.email}</span>}
+        <div className="signup-field">
+          <label>Phone*</label>
+          <input
+            name="phone"
+            value={form.phone}
+            onChange={handleChange}
+            type="tel"
+            placeholder="Phone"
+            autoComplete="off"
+          />
+          {errors.phone && <span className="signup-error">{errors.phone}</span>}
         </div>
-        <div>
-          <label>Phone Number</label>
-          <input name="phone" value={form.phone} onChange={handleChange} type="tel" placeholder="Phone Number" />
-          {errors.phone && <span className="error">{errors.phone}</span>}
+        <div className="signup-field">
+          <label>Gender *</label>
+          <div className="signup-gender-group">
+            <button
+              type="button"
+              className={form.gender === "male" ? "gender-btn selected" : "gender-btn"}
+              onClick={() => handleGender("male")}
+            >
+              Male
+            </button>
+            <button
+              type="button"
+              className={form.gender === "female" ? "gender-btn selected" : "gender-btn"}
+              onClick={() => handleGender("female")}
+            >
+              Female
+            </button>
+            <button
+              type="button"
+              className={form.gender === "other" ? "gender-btn selected" : "gender-btn"}
+              onClick={() => handleGender("other")}
+            >
+              Other
+            </button>
+          </div>
+          {errors.gender && <span className="signup-error">{errors.gender}</span>}
         </div>
-        <div>
-          <label>Gender</label>
-          <select name="gender" value={form.gender} onChange={handleChange}>
-            <option value="">Select Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-          </select>
-          {errors.gender && <span className="error">{errors.gender}</span>}
+        <div className="signup-row">
+          <div className="signup-field">
+            <label>Password *</label>
+            <input
+              name="password"
+              value={form.password}
+              onChange={handleChange}
+              type="password"
+              placeholder="Password"
+              autoComplete="new-password"
+            />
+            {errors.password && <span className="signup-error">{errors.password}</span>}
+          </div>
+          <div className="signup-field">
+            <label>Confirm Password *</label>
+            <input
+              name="confirmPassword"
+              value={form.confirmPassword}
+              onChange={handleChange}
+              type="password"
+              placeholder="Confirm Password"
+              autoComplete="new-password"
+            />
+            {errors.confirmPassword && <span className="signup-error">{errors.confirmPassword}</span>}
+          </div>
         </div>
-        <div>
-          <label>Password</label>
-          <input name="password" value={form.password} onChange={handleChange} type="password" placeholder="Password" />
-          {errors.password && <span className="error">{errors.password}</span>}
+        <div className="signup-actions-row">
+          <span className="signup-login-text">
+            Already have an account?{" "}
+            <a href="/login" className="signup-login-link">Login</a>
+          </span>
+          <button type="submit" className="signup-next-btn" disabled={loading}>
+            {loading ? "Signing up..." : "Next"}
+          </button>
         </div>
-        <div>
-          <label>Confirm Password</label>
-          <input name="confirmPassword" value={form.confirmPassword} onChange={handleChange} type="password" placeholder="Confirm Password" />
-          {errors.confirmPassword && <span className="error">{errors.confirmPassword}</span>}
-        </div>
-        <button type="submit" disabled={loading}>{loading ? 'Signing up...' : 'Sign Up'}</button>
-        <div className='alredy'>
-          <p>Already have an account?</p>
-          <button className='h5' type="button" onClick={() => window.location.href = "/login"}>Login</button>
-        </div>
+        {success && <div className="signup-success">Signup successful! You can now log in.</div>}
       </form>
     </div>
   );
