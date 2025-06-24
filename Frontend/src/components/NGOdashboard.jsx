@@ -1,4 +1,4 @@
-// NgoDashboard.jsx
+// ✅ Final Improved NgoDashboard.jsx
 import React, { useState, useEffect } from "react";
 import "./dashboard.css";
 
@@ -13,16 +13,23 @@ const animalTypes = ["Cow", "Dog", "Monkey", "Other"];
 export default function NgoDashboard() {
   const [reports, setReports] = useState([]);
   const [selected, setSelected] = useState(null);
-  const [filter, setFilter] = useState({
-    animalType: "",
-    status: "",
-    search: "",
-  });
+  const [filter, setFilter] = useState({ animalType: "", status: "", search: "" });
+  const [ngoProfile, setNgoProfile] = useState(null);
 
-  // Fetch all reports from backend
   useEffect(() => {
     fetchReports();
   }, [filter]);
+
+  useEffect(() => {
+    fetch("/api/user/me", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setNgoProfile(data))
+      .catch((err) => console.error("Failed to load NGO profile", err));
+  }, []);
 
   const fetchReports = async () => {
     let url = "/api/reports?";
@@ -34,7 +41,6 @@ export default function NgoDashboard() {
     setReports(data);
   };
 
-  // Update status and rescue note
   const handleStatusUpdate = async (id, status, rescueNote) => {
     await fetch(`/api/reports/${id}/status`, {
       method: "PUT",
@@ -45,7 +51,6 @@ export default function NgoDashboard() {
     fetchReports();
   };
 
-  // Export CSV
   const exportCSV = () => {
     if (!reports.length) return;
     const header = Object.keys(reports[0]).join(",");
@@ -64,58 +69,61 @@ export default function NgoDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+    <div className="dashboard-wrapper">
       <nav className="navbar">
-        <div className="logo">StraySafe NGO</div>
+        <div className="logo">🐾 StraySafe NGO Portal</div>
         <div className="nav-links">
           <a href="#">Dashboard</a>
-          <a href="#">New Reports</a>
-          <a href="#">Ongoing</a>
-          <a href="#">Completed</a>
-          <span className="nav-user">👤 NGO Admin</span>
+          <a href="#">My Reports</a>
+          <a href="#">Resolved</a>
+          <span className="nav-user">👤 {ngoProfile?.ngoName || "NGO Admin"}</span>
         </div>
       </nav>
+
       <div className="container wide">
-        <div className="filters flex gap-2 mb-2">
+        {ngoProfile ? (
+          <div className="profile-card">
+            <h2>👤 Welcome, {ngoProfile.ngoName}</h2>
+            <p><b>Registration #:</b> {ngoProfile.registrationNumber}</p>
+            <p><b>Email:</b> {ngoProfile.email}</p>
+            <p><b>Phone:</b> {ngoProfile.phone || "Not Provided"}</p>
+            <p><b>Total Rescues:</b> {ngoProfile.totalRescues}</p>
+          </div>
+        ) : (
+          <div className="loading-profile">Loading NGO profile...</div>
+        )}
+
+        <div className="filters">
           <input
             type="text"
             placeholder="Search by notes"
             value={filter.search}
-            onChange={(e) =>
-              setFilter((f) => ({ ...f, search: e.target.value }))
-            }
+            onChange={(e) => setFilter((f) => ({ ...f, search: e.target.value }))}
           />
           <select
             value={filter.animalType}
-            onChange={(e) =>
-              setFilter((f) => ({ ...f, animalType: e.target.value }))
-            }
+            onChange={(e) => setFilter((f) => ({ ...f, animalType: e.target.value }))}
           >
             <option value="">All Types</option>
-            {animalTypes.map((a) => (
-              <option key={a}>{a}</option>
-            ))}
+            {animalTypes.map((a) => <option key={a}>{a}</option>)}
           </select>
           <select
             value={filter.status}
-            onChange={(e) =>
-              setFilter((f) => ({ ...f, status: e.target.value }))
-            }
+            onChange={(e) => setFilter((f) => ({ ...f, status: e.target.value }))}
           >
             <option value="">All Status</option>
             <option>Pending</option>
             <option>Verified</option>
             <option>Resolved</option>
           </select>
-          <button className="btn-green" onClick={exportCSV}>
-            Export CSV
-          </button>
+          <button className="btn-export" onClick={exportCSV}>⬇️ Export CSV</button>
         </div>
-        <div className="card wide overflow-x-auto">
+
+        <div className="reports-table">
           <table>
             <thead>
               <tr>
-                <th>Report ID</th>
+                <th>ID</th>
                 <th>Animal</th>
                 <th>Photo</th>
                 <th>Location</th>
@@ -129,61 +137,41 @@ export default function NgoDashboard() {
             <tbody>
               {reports.map((r) => (
                 <tr key={r._id}>
-                  <td className="font-mono">{r._id}</td>
+                  <td>{r._id.slice(-6)}</td>
                   <td>{r.animalType}</td>
-                  <td>
-                    <img src={r.imageUrl} alt="" className="thumb-img" />
-                  </td>
-                  <td>
-                    {r.lat},{r.lng}
-                  </td>
-                  <td>
-                    {new Date(r.submittedAt).toLocaleString()}
-                  </td>
+                  <td><img src={r.imageUrl} alt="animal" className="report-img" /></td>
+                  <td>{r.lat},{r.lng}</td>
+                  <td>{new Date(r.submittedAt).toLocaleString()}</td>
                   <td>{r.notes}</td>
-                  <td>
-                    <span className={statusClasses[r.status]}>
-                      {r.status}
-                    </span>
-                  </td>
+                  <td><span className={statusClasses[r.status]}>{r.status}</span></td>
                   <td>{r.rescueNote}</td>
-                  <td>
-                    <button
-                      className="btn-blue"
-                      onClick={() => setSelected(r)}
-                    >
-                      Update
-                    </button>
-                  </td>
+                  <td><button className="btn-update" onClick={() => setSelected(r)}>✏️</button></td>
                 </tr>
               ))}
               {reports.length === 0 && (
-                <tr>
-                  <td colSpan={9} className="empty-msg">
-                    No reports found.
-                  </td>
-                </tr>
+                <tr><td colSpan={9}>No reports found.</td></tr>
               )}
             </tbody>
           </table>
         </div>
-        <div className="map-section">
-          <span className="map-placeholder">
-            {/* Embed OpenStreetMap/Google Map here */}
-            [Map view: visualize all reports]
-          </span>
+
+        <div className="analytics-card">
+          <h3>📊 Report Summary</h3>
+          <ul>
+            <li>Total: {reports.length}</li>
+            <li>Pending: {reports.filter(r => r.status === 'Pending').length}</li>
+            <li>Verified: {reports.filter(r => r.status === 'Verified').length}</li>
+            <li>Resolved: {reports.filter(r => r.status === 'Resolved').length}</li>
+          </ul>
         </div>
+
+        <div className="map-view">📍 Map view placeholder</div>
       </div>
+
       {selected && (
         <div className="modal-bg">
           <div className="modal-content">
-            <h3>Update Report Status</h3>
-            <div>
-              Report ID: <span className="font-mono">{selected._id}</span>
-            </div>
-            <div>
-              Current Status: <b>{selected.status}</b>
-            </div>
+            <h3>Update Status</h3>
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -199,20 +187,14 @@ export default function NgoDashboard() {
               </select>
               <textarea
                 name="rescueNote"
-                placeholder="Rescue/Resolution note (visible to user)"
+                placeholder="Write rescue note"
                 defaultValue={selected.rescueNote || ""}
               />
               <div className="modal-actions">
-                <button
-                  type="button"
-                  className="btn-cancel"
-                  onClick={() => setSelected(null)}
-                >
+                <button type="button" className="btn-cancel" onClick={() => setSelected(null)}>
                   Cancel
                 </button>
-                <button type="submit" className="btn-green">
-                  Update
-                </button>
+                <button type="submit" className="btn-submit">Update</button>
               </div>
             </form>
           </div>

@@ -5,7 +5,7 @@ body {
   color: #253053;
 }
 a {
-  color: #2563eb;
+  color: #047857;
   text-decoration: none;
   font-weight: 500;
 }
@@ -18,7 +18,7 @@ a:hover { text-decoration: underline; }
   background: #fff;
   box-shadow: 0 1px 6px rgba(50,60,110,0.07);
 }
-.logo { font-weight: bold; font-size: 1.5rem; color: #2563eb; }
+.logo { font-weight: bold; font-size: 1.5rem;  color: #B56208;}
 .nav-links { display: flex; align-items: center; gap: 16px; }
 .nav-user {
   background: #f1f5f9;

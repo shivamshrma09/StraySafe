@@ -11,37 +11,31 @@
 body {
   background: var(--bg);
   font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-/* Login Box */
+/* Main Login Box */
 .login-box {
-  width: 94vw;
-  max-width: 850px;
-  min-height: 700px;
-  margin: 50px auto 0 auto;
-  border-radius: var(--radius);
-  display: flex;
+  width: 95%;
+  max-width: 900px;
+  margin: 40px auto;
   background: #fff;
-  overflow: hidden;
+  border-radius: var(--radius);
   box-shadow: var(--shadow);
+  display: flex;
+  overflow: hidden;
   flex-direction: row;
 }
 
 .login-img-side {
-  width: 350px;
-  min-width: 150px;
+  width: 45%;
   background: var(--bg);
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 300px;
-  margin-top: 20px;
-  margin-left: 20px;
-  margin-bottom: 20px;
-  border-radius: var(--radius) 0 0 var(--radius);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-  border: 1px solid #0a0909;
+  position: relative;
+  border-right: 1px solid #ddd;
 }
 
 .main-img {
@@ -53,41 +47,39 @@ body {
 
 .logo-img {
   position: absolute;
-  top: 18px;
+  top: 16px;
   left: 16px;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
   object-fit: contain;
   background: white;
-  border-radius: 50%;
   padding: 6px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   border: 2px solid var(--brand);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
+/* Content Area */
 .login-content {
   flex: 1;
-  padding: 38px 30px 32px 30px;
+  padding: 40px 32px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  position: relative;
 }
 
 .brand {
+  font-size: 1.9rem;
   color: var(--brand);
-  font-size: 1.7rem;
-  font-weight: bold;
-  margin-top: 0;
-  position: static;
+  font-weight: 700;
+  margin-bottom: 6px;
 }
 
 .login-content h2 {
-  color: #171010;
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 8px;
-  
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111;
+  margin: 6px 0 16px 0;
 }
 
 .login-content p {
@@ -104,12 +96,12 @@ body {
 }
 
 .login-form input {
-  padding: 10px 12px;
+  padding: 12px 14px;
+  font-size: 1rem;
   border: 1px solid #cfd8dc;
   border-radius: 6px;
-  font-size: 1rem;
   outline: none;
-  transition: border 0.2s;
+  transition: border 0.2s ease-in-out;
 }
 
 .login-form input:focus {
@@ -117,46 +109,44 @@ body {
 }
 
 .login-form button {
-  padding: 10px;
-  background: var(--primary);
-  color: #fff;
+  margin-top: 10px;
+  padding: 12px;
   font-size: 1.1rem;
+  background: var(--primary);
+  color: white;
   border: none;
   border-radius: 6px;
+  font-weight: 600;
   cursor: pointer;
-  font-weight: 500;
-  margin-top: 8px;
   transition: background 0.2s;
 }
 
-.login-form button[disabled] {
+.login-form button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
 
 .login-form button:hover:enabled {
-  background: #115293;
+  background: #125ea9;
 }
 
 .form-error {
   color: var(--error);
   font-size: 0.95rem;
-  margin-bottom: 4px;
+  margin-top: -6px;
 }
 
 /* Links */
 .login-links {
-  margin-top: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  margin-top: 22px;
+  font-size: 0.95rem;
 }
 
 .login-links .link {
   color: var(--accent);
-  text-decoration: none;
   font-weight: 500;
-  transition: color 0.2s;
+  text-decoration: none;
+  margin-left: 4px;
 }
 
 .login-links .link:hover {
@@ -164,24 +154,46 @@ body {
 }
 
 /* Responsive Design */
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   .login-box {
     flex-direction: column;
-    max-width: 97vw;
-    width: 98vw;
-    min-height: 0;
-    margin: 16px auto 0 auto;
+    width: 95%;
   }
+
   .login-img-side {
     width: 100%;
-    min-height: 120px;
-    height: 120px;
+    height: 180px;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
     border-radius: var(--radius) var(--radius) 0 0;
   }
+
   .main-img {
     border-radius: var(--radius) var(--radius) 0 0;
+    height: 100%;
   }
+
+  .logo-img {
+    top: 12px;
+    left: 12px;
+    width: 38px;
+    height: 38px;
+  }
+
   .login-content {
-    padding: 22px 10px 20px 10px;
+    padding: 24px 16px;
+  }
+
+  .login-content h2 {
+    font-size: 1.35rem;
+  }
+
+  .login-form input,
+  .login-form button {
+    font-size: 1rem;
+  }
+
+  .login-links {
+    font-size: 0.92rem;
   }
 }

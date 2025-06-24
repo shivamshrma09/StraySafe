@@ -1,6 +1,19 @@
 import React, { useState } from "react";
 import "./Singupngo.css";
 
+const verifiedNGOs = [
+  { name: "Compassion Unlimited Plus Action", regNumber: "KA004/1993" },
+  { name: "People for Animals – Bangalore", regNumber: "KA025/2001" },
+  { name: "Govanithashraya Trust", regNumber: "KA030/2002" },
+  { name: "Captain’s Animal Care Trust", regNumber: "KA073/2019" },
+  { name: "Charlie’s Animal Rescue Centre (CARE)", regNumber: "KA067/2018" },
+  { name: "Shri Krishan Parnami Gaushala", regNumber: "HR351/2024" },
+  { name: "Sarvodaya Foundation", regNumber: "HR352/2024" },
+  { name: "Sri Venkataramana Goshala Trust", regNumber: "KA078/2021" },
+  { name: "Shree Durgamata Goshala Trust", regNumber: "KA080/2023" },
+  { name: "Shri Krishna Viklang Gau Sewa Samiti", regNumber: "HR353/2025" }
+];
+
 const Singupngo = () => {
   const [form, setForm] = useState({
     ngoName: "",
@@ -24,6 +37,14 @@ const Singupngo = () => {
     if (!form.gender) newErrors.gender = "Gender is required";
     if (form.password.length < 6) newErrors.password = "Min 6 characters";
     if (form.password !== form.confirmPassword) newErrors.confirmPassword = "Passwords do not match";
+
+    const matchedNGO = verifiedNGOs.find(
+      (ngo) =>
+        ngo.name.toLowerCase() === form.ngoName.trim().toLowerCase() &&
+        ngo.regNumber.toLowerCase() === form.regNumber.trim().toLowerCase()
+    );
+    if (!matchedNGO) newErrors.regNumber = "NGO Name and Registration Number do not match our records";
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };

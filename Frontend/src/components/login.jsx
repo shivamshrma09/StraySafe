@@ -35,7 +35,6 @@ export default function Login() {
       if (data.token) {
         localStorage.setItem("token", data.token);
       }
-      // Redirect according to user role
       if (data.user?.role === "ngo") {
         window.location.href = "/NGOdashboard";
       } else if (data.user?.role === "admin") {
@@ -86,7 +85,7 @@ export default function Login() {
         </form>
         <div className="login-links">
           <span>
-            Don't have an account?{" "}
+            Don&apos;t have an account?{' '}
             <a href="/signup" className="link">
               Sign Up
             </a>
