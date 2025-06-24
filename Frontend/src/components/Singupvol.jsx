@@ -8,18 +8,20 @@ const initialForm = {
   phone: "",
   gender: "",
   password: "",
-  confirmPassword: ""
+  confirmPassword: "",
 };
 
-export default function SignupVolunteer() {
+const Singupvol = () => {
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [apiError, setApiError] = useState("");
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
     setErrors({ ...errors, [e.target.name]: "" });
+    setApiError("");
     setSuccess(false);
   };
 
@@ -48,14 +50,39 @@ export default function SignupVolunteer() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSuccess(false);
+    setApiError("");
     if (!validate()) return;
     setLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: form.firstName,
+          lastName: form.lastName,
+          email: form.email,
+          phone: form.phone,
+          gender: form.gender,
+          password: form.password,
+          role: "volunteer",
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setApiError(data.message || "Signup failed");
+        setSuccess(false);
+        setLoading(false);
+        return;
+      }
       setSuccess(true);
+      setApiError("");
       setForm(initialForm);
-    }, 1200);
+    } catch (err) {
+      setApiError("Network error");
+      setSuccess(false);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -65,11 +92,7 @@ export default function SignupVolunteer() {
           <img src="whatsapp.jpg" alt="StraySafe Logo" className="signup-logo" />
           <span className="signup-brand">StraySafe</span>
         </div>
-        <img
-          className="signup-main-img"
-          src="Singup.jpg"
-          alt="Cow"
-        />
+        <img className="signup-main-img" src="Singup.jpg" alt="Cow" />
       </div>
       <form className="signup-form-section" onSubmit={handleSubmit} autoComplete="off">
         <h2 className="signup-title">
@@ -187,8 +210,11 @@ export default function SignupVolunteer() {
             {loading ? "Signing up..." : "Next"}
           </button>
         </div>
+        {apiError && <div className="signup-error">{apiError}</div>}
         {success && <div className="signup-success">Signup successful! You can now log in.</div>}
       </form>
     </div>
   );
-}
+};
+
+export default Singupvol;

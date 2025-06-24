@@ -1,4 +1,3 @@
-// routes/reports.js
 const express = require('express');
 const router = express.Router();
 const Report = require('../models/Report');
@@ -77,5 +76,7 @@ router.put('/:id/status', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+
 
 module.exports = router;

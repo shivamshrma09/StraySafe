@@ -188,6 +188,7 @@ export default function VolunteerDashboard() {
               <span className="font-mono">{trackId}</span>
               <button
                 className="ml-2 btn-blue"
+                type="button"
                 onClick={() => {
                   navigator.clipboard.writeText(trackId);
                 }}
@@ -208,7 +209,7 @@ export default function VolunteerDashboard() {
               value={trackId}
               onChange={(e) => setTrackId(e.target.value)}
             />
-            <button className="btn-blue">Track</button>
+            <button className="btn-blue" type="submit">Track</button>
           </form>
           {tracking &&
             (tracking.notfound ? (
