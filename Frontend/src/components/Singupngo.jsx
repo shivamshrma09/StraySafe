@@ -101,7 +101,7 @@ const Singupngo = () => {
               value={form.regNumber}
               onChange={handleChange}
               type="text"
-              placeholder="Reg. Number"
+              placeholder="Registration Number"
             />
             {errors.regNumber && <span className="error">{errors.regNumber}</span>}
           </div>
@@ -123,40 +123,20 @@ const Singupngo = () => {
             name="phone"
             value={form.phone}
             onChange={handleChange}
-            type="tel"
-            placeholder="Phone Number"
+            type="text"
+            placeholder="Phone"
+            maxLength={10}
           />
           {errors.phone && <span className="error">{errors.phone}</span>}
         </div>
-        <div className="gender-row">
+        <div>
           <label>Gender</label>
-          <label>
-            <input
-              type="radio"
-              name="gender"
-              value="male"
-              checked={form.gender === "male"}
-              onChange={handleChange}
-            /> Male
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="gender"
-              value="female"
-              checked={form.gender === "female"}
-              onChange={handleChange}
-            /> Female
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="gender"
-              value="other"
-              checked={form.gender === "other"}
-              onChange={handleChange}
-            /> Other
-          </label>
+          <select name="gender" value={form.gender} onChange={handleChange}>
+            <option value="">Select</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
           {errors.gender && <span className="error">{errors.gender}</span>}
         </div>
         <div>

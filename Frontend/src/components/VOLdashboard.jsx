@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import "./dashboard.css";
+import React, { useState, useEffect } from "react";
 
 const animalTypes = ["Cow", "Dog", "Monkey", "Other"];
 
@@ -15,7 +14,8 @@ export default function VolunteerDashboard() {
   const [trackId, setTrackId] = useState("");
   const [myReports, setMyReports] = useState([]);
 
-  React.useEffect(() => {
+  // Auto-detect location
+  useEffect(() => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((pos) => {
         setReport((r) => ({
@@ -26,6 +26,7 @@ export default function VolunteerDashboard() {
     }
   }, []);
 
+  // Handle camera-only image
   const handleImageChange = (e) => {
     if (e.target.files[0]) {
       setReport((r) => ({
@@ -36,10 +37,25 @@ export default function VolunteerDashboard() {
     }
   };
 
+  // Submit report (simulate backend)
   const handleSubmit = (e) => {
     e.preventDefault();
+    const newReport = {
+      ...report,
+      status: "Pending",
+      timestamp: new Date().toLocaleString(),
+      id: "RPT" + Math.floor(Math.random() * 100000),
+    };
+    setMyReports([newReport, ...myReports]);
     setSubmitted(true);
-    // TODO: Submit to backend and update myReports
+    setTimeout(() => setSubmitted(false), 3000);
+    setReport({
+      animal: "",
+      notes: "",
+      image: null,
+      imageUrl: "",
+      location: report.location,
+    });
   };
 
   return (
@@ -135,7 +151,7 @@ export default function VolunteerDashboard() {
                   <li key={idx} className="report-item">
                     <span>
                       <b>{rep.animal}</b> at {rep.location} -{" "}
-                      <span className="status-badge">{rep.status}</span>
+                      <span className={`status-badge status-${rep.status.toLowerCase()}`}>{rep.status}</span>
                     </span>
                     <span className="report-time">{rep.timestamp}</span>
                   </li>

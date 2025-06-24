@@ -13,7 +13,9 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.email.trim() || !form.password.trim()) {
+    const email = form.email.trim();
+    const password = form.password;
+    if (!email || !password) {
       setError("Email and password are required!");
       return;
     }
@@ -22,10 +24,7 @@ export default function Login() {
       const res = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: form.email.trim(),
-          password: form.password,
-        }),
+        body: JSON.stringify({ email, password }),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -33,14 +32,18 @@ export default function Login() {
         setLoading(false);
         return;
       }
-      localStorage.setItem("token", data.token);
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+      }
       // User role ke hisab se redirect
       if (data.user?.role === "ngo") {
         window.location.href = "/NGOdashboard";
       } else if (data.user?.role === "admin") {
         window.location.href = "/AdminDashboard";
-      } else {
+      } else if (data.user?.role === "volunteer" || data.user?.role === "VOL") {
         window.location.href = "/VOLdashboard";
+      } else {
+        window.location.href = "/";
       }
     } catch (err) {
       setError("Network error. Please try again.");

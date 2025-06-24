@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import "./dashboard.css";
-
+import "./dashboard.css"; // Assuming you have a CSS file for styles
 const statusClasses = {
   Pending: "status-badge status-pending",
   Verified: "status-badge status-verified",
