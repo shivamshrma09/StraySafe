@@ -63,7 +63,6 @@ export default function SignupVolunteer() {
       <div className="signup-img-section">
         <div className="signup-logo-row">
           <img src="whatsapp.jpg" alt="StraySafe Logo" className="signup-logo" />
-
           <span className="signup-brand">StraySafe</span>
         </div>
         <img

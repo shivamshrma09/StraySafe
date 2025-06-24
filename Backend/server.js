@@ -1,15 +1,21 @@
-// server.js
+const express = require('express');
 const mongoose = require('mongoose');
-const dotenv = require('dotenv');
-dotenv.config();
-const app = require('./app');
-const PORT = process.env.PORT || 5000;
+const cors = require('cors');
+require('dotenv').config();
 
-mongoose.connect(process.env.MONGODB_URI)
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+// Mount routes only once!
+app.use('/api/auth', require('./routes/auth'));
+
+// Connect to MongoDB and start server
+mongoose.connect(process.env.MONGODB_URI, {})
   .then(() => {
-    console.log('MongoDB connected');
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
+    console.log('MongoDB connected!');
+    app.listen(process.env.PORT || 5000, () => {
+      console.log('Server running on port', process.env.PORT || 5000);
     });
   })
   .catch((err) => {

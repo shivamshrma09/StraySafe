@@ -51,7 +51,6 @@ exports.login = async (req, res) => {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
-    // Password field ko select karna zaruri hai
     const user = await User.findOne({ email }).select('+password');
     if (!user) {
       return res.status(400).json({ message: 'Invalid credentials' });

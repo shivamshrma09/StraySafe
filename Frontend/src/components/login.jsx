@@ -35,7 +35,7 @@ export default function Login() {
       if (data.token) {
         localStorage.setItem("token", data.token);
       }
-      // User role ke hisab se redirect
+      // Redirect according to user role
       if (data.user?.role === "ngo") {
         window.location.href = "/NGOdashboard";
       } else if (data.user?.role === "admin") {

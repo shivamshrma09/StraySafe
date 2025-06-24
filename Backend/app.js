@@ -1,18 +1,23 @@
 const express = require('express');
-const reportRoutes = require('./routes/reports');
+const mongoose = require('mongoose');
+const cors = require('cors');
+require('dotenv').config();
+
 const app = express();
-const path = require('path');
-
+app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
-// Serve uploaded images statically
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// Mount your auth routes
+app.use('/api/auth', require('./routes/auth'));
 
-app.use('/api/reports', reportRoutes);
-
-app.get('/', (req, res) => {
-  res.send('API is working!');
-});
-
-module.exports = app;
+// Connect to MongoDB and start the server
+mongoose.connect(process.env.MONGODB_URI, { })
+    .then(() => {
+        console.log('MongoDB connected!');
+        app.listen(process.env.PORT || 5000, () => {
+            console.log('Server running on port', process.env.PORT || 5000);
+        });
+    })
+    .catch((err) => {
+        console.error('MongoDB connection error:', err);
+    });
