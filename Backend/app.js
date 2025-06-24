@@ -14,17 +14,17 @@ app.use('/api/auth', require('./routes/auth'));
 mongoose.connect(process.env.MONGODB_URI, { })
     .then(() => {
         console.log('MongoDB connected!');
-    // Mount your report routes and other routes after DB connection
-    const reportRoutes = require('./routes/report');
-    app.use('/api/reports', reportRoutes);
+        // FIX: File name plural
+        const reportRoutes = require('./routes/reports');
+        app.use('/api/reports', reportRoutes);
 
-    // Optionally, add your other routes here
+        // Optionally, add your other routes here
 
-    const PORT = process.env.PORT || 5000;
-    app.listen(PORT, () => {
-        console.log('Server running on port', PORT);
+        const PORT = process.env.PORT || 5000;
+        app.listen(PORT, () => {
+            console.log('Server running on port', PORT);
+        });
+    })
+    .catch((err) => {
+        console.error('MongoDB connection error:', err);
     });
-})
-.catch((err) => {
-    console.error('MongoDB connection error:', err);
-});
