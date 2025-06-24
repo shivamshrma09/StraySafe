@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import "./dashboard.css";
 const statusColors = {
   Pending: "bg-yellow-200",
   Verified: "bg-blue-200",

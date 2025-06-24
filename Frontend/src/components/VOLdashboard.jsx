@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./dashboard.css";
 
 const animalTypes = ["Cow", "Dog", "Monkey", "Other"];
 
