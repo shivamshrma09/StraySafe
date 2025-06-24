@@ -1,11 +1,10 @@
+// server.js
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 dotenv.config();
 const app = require('./app');
-
 const PORT = process.env.PORT || 5000;
 
-// Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
     console.log('MongoDB connected');
