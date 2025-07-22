@@ -1,4 +1,4 @@
-**StraySafe – AI-Enhanced Stray Animal Rescue Platform**
+## StraySafe – AI-Enhanced Stray Animal Rescue Platform
 
 **StraySafe** is an AI-assisted web application that empowers users to report and assist injured or hungry stray animals, and enables volunteers to respond in real time. Inspired by NeoRecruiter’s polished structure, this README is copy-paste ready—with placeholders for screenshots, live links, and image attachments.
 
@@ -7,6 +7,7 @@
 - **Backend:**  < come in 2 days >
 
 - **FIGMA LINK** - https://www.figma.com/design/qhtQxZgrWr4HkFMLZJitop/Untitled?node-id=0-1&t=8nERqX4fNRUEWDGX-1
+- **DEMO VIDEO** - https://www.dropbox.com/scl/fi/zndhcba1gv6dgvkv0mqk8/StraySafe-all-life-is-important-Google-Chrome-2025-07-22-21-15-59.mp4?rlkey=7ctrpe7ocid440b0cc237gll0&st=istcc1wx&dl=0
 
 ## 📋 Overview
 StraySafe leverages modern web technologies and optional AI triage to map stray animal incidents, collect assistance requests, and match volunteers based on proximity. Real-time updates, notifications, and admin management ensure efficient rescue operations.
