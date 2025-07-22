@@ -49,8 +49,11 @@ StraySafe leverages modern web technologies and optional AI triage to map stray 
 - React Router & Context API  
 - Axios for HTTP requests
 
+StraySafe/Frontend/src/assets
+/dashboard.png
+
 ## my website flow
-1. ![Dashboard Overview](assets/dashboard.png)  
+1. ![Dashboard Overview](StraySafe/Frontend/src/assets/dashboard.png)  
  user come to dashbord and login/singup
 
 2.if they alredy have account they will login 
