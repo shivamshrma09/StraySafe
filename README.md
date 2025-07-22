@@ -1,5 +1,5 @@
-# StraySafe – AI-Enhanced Stray Animal Rescue Platform
-![Dashboard Overview](assets/dashboard.png)  
+StraySafe – AI-Enhanced Stray Animal Rescue Platform
+<img width="1919" height="904" alt="dashboard" src="https://github.com/user-attachments/assets/c9cca73d-b8ec-4fe6-8d02-99806c16a568" />
 
 **StraySafe** is an AI-assisted web application that empowers users to report and assist injured or hungry stray animals, and enables volunteers to respond in real time. Inspired by NeoRecruiter’s polished structure, this README is copy-paste ready—with placeholders for screenshots, live links, and image attachments.
 
@@ -53,17 +53,20 @@ StraySafe/Frontend/src/assets
 /dashboard.png
 
 ## my website flow
-1. ![Dashboard Overview](StraySafe/Frontend/src/assets/dashboard.png)  
+<img width="1919" height="904" alt="dashboard" src="https://github.com/user-attachments/assets/c9cca73d-b8ec-4fe6-8d02-99806c16a568" />
  user come to dashbord and login/singup
 
 2.if they alredy have account they will login 
- ![Login Overview](assets/login.png)  
+<img width="1423" height="683" alt="login" src="https://github.com/user-attachments/assets/82cc85d6-d9ed-4c3f-8c46-05c47a4bdca3" />
 
 3.if they dont have any Account and he is volnetear then they will login as a volenter and if he is NGO then they will singup as NGO
-  ![singup as NGO Overview](assets/both.png)     ![singup as Voleter Overview](assets/volenter2.png)    ![singup as NGO Overview](assets/ngo.png)  
+<img width="1369" height="810" alt="both" src="https://github.com/user-attachments/assets/5a36c12d-65a0-4e57-8763-1f02c45acff2" />
+     <img width="1367" height="851" alt="volenter2" src="https://github.com/user-attachments/assets/c57eaff9-eb5f-4f2b-a594-672ef0c9c4c6" />
+<img width="1405" height="895" alt="ngo" src="https://github.com/user-attachments/assets/057089d8-d5de-4e59-9f90-c48a949903b9" />
 
 4.and then volunteer report animal and can see there pass reports he can track it also 
- ![report Overview](assets/report.png)    ![report Overview](assets/myreports.png)  
+<img width="1908" height="910" alt="report" src="https://github.com/user-attachments/assets/4eefcb9a-9c5f-4109-a567-976e2f5d08d5" />
+<img width="1906" height="903" alt="myreports" src="https://github.com/user-attachments/assets/1f3437b1-6873-4b62-8fb0-3f5b8386b752" />
 
 ## 🚀 Installation & Setup
 
