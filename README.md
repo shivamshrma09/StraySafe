@@ -1,152 +1,239 @@
-# StraySafe – AI-Enhanced Stray Animal Rescue Platform
+# 🐾 StraySafe – AI-Enhanced Stray Animal Rescue Platform
 
-**StraySafe** is an AI-assisted web application that empowers users to report and assist injured or hungry stray animals, and enables volunteers to respond in real time. Inspired by NeoRecruiter’s polished structure, this README is copy-paste ready—with placeholders for screenshots, live links, and image attachments.
+StraySafe is an AI-assisted web application designed to empower communities to report, track, and assist injured, hungry, or missing stray animals. It connects users and volunteers, backed by real-time maps, notifications, AI-aided triage, and powerful admin features.
+
+---
 
 ## 🚀 Live Demo
-- **Frontend:** < come in 2 days >
-- **Backend:**  < come in 2 days >
 
-- **FIGMA LINK** - https://www.figma.com/design/qhtQxZgrWr4HkFMLZJitop/Untitled?node-id=0-1&t=8nERqX4fNRUEWDGX-1
-- **DEMO VIDEO** - https://www.dropbox.com/scl/fi/zndhcba1gv6dgvkv0mqk8/StraySafe-all-life-is-important-Google-Chrome-2025-07-22-21-15-59.mp4?rlkey=7ctrpe7ocid440b0cc237gll0&st=istcc1wx&dl=0
+- **Frontend Live Link:** _Coming in 2 days_
+- **Backend Live Link:** _Coming in 2 days_
+
+- **🧾 Figma Design:** [Click here to view](https://www.figma.com/design/qhtQxZgrWr4HkFMLZJitop/Untitled?node-id=0-1&t=8nERqX4fNRUEWDGX-1)
+- **📽 Demo Video:** [Watch Here](https://www.dropbox.com/scl/fi/zndhcba1gv6dgvkv0mqk8/StraySafe-all-life-is-important-Google-Chrome-2025-07-22-21-15-59.mp4?rlkey=7ctrpe7ocid440b0cc237gll0&st=istcc1wx&dl=0)
+
+---
 
 ## 📋 Overview
-StraySafe leverages modern web technologies and optional AI triage to map stray animal incidents, collect assistance requests, and match volunteers based on proximity. Real-time updates, notifications, and admin management ensure efficient rescue operations.
+
+StraySafe empowers citizens, NGOs, and volunteers to collaboratively help stray animals:
+- 📍 Real-time animal sightings on an interactive map.
+- ✍️ Image-rich incident reports with GPS & urgency levels.
+- 👥 Matching volunteers to incidents by location.
+- ⚙️ Admin dashboard for NGO staff.
+
+---
 
 ## ✨ Key Features
 
-**📍 Location Mapping**  
-- Interactive map showing reported incidents  
-- Filter by status: Injured, Hungry, Missing  
+### 📍 Interactive Location Mapping
+- Real-time display of incidents.
+- Filters by type: **Injured**, **Hungry**, **Missing**.
 
-**📝 Assistance Requests**  
-- Submit requests with details, photos & GPS coords  
-- *Optional:* AI categorization of urgency  
+### 📝 Smart Assistance Request System
+- Submit requests with:
+  - Descriptions
+  - GPS location
+  - Photos
+- (Optional) AI urgency detection for faster triage.
 
-**👥 Volunteer Portal**  
-- Register & manage profile  
-- Proximity-based request assignment  
-- Real-time acceptance & completion tracking  
+### 🧑‍🤝‍🧑 Volunteer Portal
+- Role-based login for **User**, **Volunteer**, or **NGO**.
+- View, accept, and complete rescue requests.
+- Track your rescue history.
 
-**🔔 Notifications & Updates**  
-- Email & in-app alerts for new, assigned, and completed requests  
-- Status timeline for each request  
+### 🔔 Real-Time Alerts
+- Email + In-App alerts
+- Status timeline of every reported incident
 
-**🛠️ Admin Dashboard**  
-- Moderate and assign requests manually  
-- Volunteer performance analytics  
-- Data export for reports  
+### 🛠️ Admin Dashboard
+- Approve, assign, and track requests
+- Performance analytics for volunteers
+- Download reports (.csv etc.)
 
-## 🏗️ Technology Stack
+---
 
-**Backend**  
-- Node.js + Express.js (REST API)  
-- MongoDB + Mongoose  
-- JWT authentication & bcrypt for password hashing  
-- Nodemailer for email notifications  
-- Multer for file/photo uploads  
+## 🏗️ Tech Stack
 
-**Frontend**  
-- React + Vite  
-- Tailwind CSS  
-- React Router & Context API  
-- Axios for HTTP requests
+| Layer               | Technologies Used                                 |
+|--------------------|----------------------------------------------------|
+| **Frontend**        | React + Vite, Tailwind CSS, Axios, React Router    |
+| **Backend**         | Node.js, Express.js, MongoDB, Mongoose             |
+| **Authentication**  | JWT, bcrypt                                        |
+| **Notifications**   | Nodemailer (Email), In-app Alerts                  |
+| **Media Uploads**   | Multer + Cloudinary                                |
 
-StraySafe/Frontend/src/assets
-/dashboard.png
+---
 
-## my website flow
-<img width="1919" height="904" alt="dashboard" src="https://github.com/user-attachments/assets/c9cca73d-b8ec-4fe6-8d02-99806c16a568" />
- user come to dashbord and login/singup
+## 🧭 Website Flow
 
-2.if they alredy have account they will login 
+1. 🏠 User lands on Dashboard: Choose Login or Signup
 
-<img width="1423" height="683" alt="login" src="https://github.com/user-attachments/assets/82cc85d6-d9ed-4c3f-8c46-05c47a4bdca3" />
+```
+<img width="1919" height="904" src="https://github.com/user-attachments/assets/c9cca73d-b8ec-4fe6-8d02-99806c16a568" alt="dashboard" />
+```
 
-3.if they dont have any Account and he is volnetear then they will login as a volenter and if he is NGO then they will singup as NGO
+---
 
-<img width="1369" height="810" alt="both" src="https://github.com/user-attachments/assets/5a36c12d-65a0-4e57-8763-1f02c45acff2" />
-     <img width="1367" height="851" alt="volenter2" src="https://github.com/user-attachments/assets/c57eaff9-eb5f-4f2b-a594-672ef0c9c4c6" />
-<img width="1405" height="895" alt="ngo" src="https://github.com/user-attachments/assets/057089d8-d5de-4e59-9f90-c48a949903b9" />
+2. 🙋 Existing Users Login  
+```
+<img width="1423" height="683" src="https://github.com/user-attachments/assets/82cc85d6-d9ed-4c3f-8c46-05c47a4bdca3" alt="login" />
+```
 
-4.and then volunteer report animal and can see there pass reports he can track it also 
+3. 👤 New Account Registration — Select Volunteer or NGO  
+```
+<img width="1369" height="810" src="https://github.com/user-attachments/assets/5a36c12d-65a0-4e57-8763-1f02c45acff2" alt="role-based" />
+<img width="1367" height="851" src="https://github.com/user-attachments/assets/c57eaff9-eb5f-4f2b-a594-672ef0c9c4c6" alt="volunteer" />
+<img width="1405" height="895" src="https://github.com/user-attachments/assets/057089d8-d5de-4e59-9f90-c48a949903b9" alt="ngo" />
+```
 
-<img width="1908" height="910" alt="report" src="https://github.com/user-attachments/assets/4eefcb9a-9c5f-4109-a567-976e2f5d08d5" />
-<img width="1906" height="903" alt="myreports" src="https://github.com/user-attachments/assets/1f3437b1-6873-4b62-8fb0-3f5b8386b752" />
+---
 
-## 🚀 Installation & Setup
+4. 🚑 Volunteer Reporting & Tracking  
+```
+<img width="1908" height="910" src="https://github.com/user-attachments/assets/4eefcb9a-9c5f-4109-a567-976e2f5d08d5" alt="report" />
+<img width="1906" height="903" src="https://github.com/user-attachments/assets/1f3437b1-6873-4b62-8fb0-3f5b8386b752" alt="myreports" />
+```
 
-### Prerequisites
-- Node.js v16+  
-- MongoDB v4.4+  
-- Email (SMTP) credentials  
+---
 
-### Backend Setup
-# creat a .env file
+## 🛠 Installation Guide
+
+### 🔍 Prerequisites
+
+Make sure these are installed:
+- Node.js v16+
+- MongoDB v4.4+
+- SMTP Email credentials
+- A Cloudinary account for image uploads
+
+---
+
+### 💻 Backend Setup
+
+```
+# Clone this project
+git clone https://github.com/shivamshrma09/StraySafe.git
+
+# Navigate to backend directory
+cd StraySafe/backend
+
+# Install dependencies
+npm install
+
+# Create a .env file and provide credentials:
 PORT=
 DB_CONNECTION_STRING=
 JWT_SECRET=
 CLOUDINARY_CLOUD_NAME=
 CLOUDINARY_API_KEY=
 CLOUDINARY_API_SECRET=
-CLOUDINARY_URL=
 EMAIL_SERVICE=
 EMAIL_USER=
 EMAIL_PASS=
-VITE_BASE_URL=
 CLIENT_URL=
 
+# To start server
 npm run dev
+```
 
-### Frontend Setup
+---
+
+### 🖼 Frontend Setup
+
+```
+# Navigate to frontend
 cd StraySafe/Frontend
+
+# Install dependencies
 npm install
+
+# Run development server
 npm run dev
+```
+
+---
 
 ## 📡 API Endpoints
 
-### User & Volunteer
-- `POST /register` – Sign up (user or volunteer)  
-- `POST /login` – Authenticate & receive JWT  
-- `GET /profile` – Fetch user profile  
-- `POST /logout` – Invalidate session  
+### 👥 User & Volunteer
 
-### Assistance Requests
-- `POST /requests` – Create a new rescue request  
-- `GET /requests` – List all requests (with filters)  
-- `GET /requests/:id` – Get request details  
-- `PATCH /requests/:id/assign` – Assign volunteer (admin only)  
-- `PATCH /requests/:id/status` – Update status (volunteer)  
+- `POST /register` – Register as volunteer/NGO/user  
+- `POST /login` – Login with JWT token  
+- `GET /profile` – Get profile info  
+- `POST /logout` – Log out  
 
-### Media & Notifications
-- `POST /requests/:id/photos` – Upload photos for a request  
-- `POST /notifications` – Send email/in-app notifications  
+### 🤲 Assistance Request
 
-## 🎯 Usage Guide
+- `POST /requests` – Create an animal report request  
+- `GET /requests` – View all requests  
+- `GET /requests/:id` – View single request  
+- `PATCH /requests/:id/assign` – Assign request to volunteer  
+- `PATCH /requests/:id/status` – Volunteer updates request status  
 
-### For Users
-1. **Report an Incident:** Fill location, description, and optional photos.  
-2. **Track Request:** View status timeline on your dashboard.  
-3. **Receive Updates:** Get notified when a volunteer is assigned and completes rescue.
+### 📷 Media & 🛎 Notifications
 
-### For Volunteers
-1. **Browse Requests:** See nearby open requests on the map.  
-2. **Accept Request:** Claim a request and mark it “In Progress.”  
-3. **Complete Rescue:** Update status to “Completed” and upload outcome photos.
+- `POST /requests/:id/photos` – Upload images for request  
+- `POST /notifications` – Trigger email/in-app notifications  
 
-## 🔒 Security Features
-- JWT-based authentication with token expiry  
-- Input validation & sanitization  
-- Role-based access control (user, volunteer, admin)  
-- Secure file upload handling  
+---
 
-## 🖼️ Screenshots & Image Attachment
+## 🧑‍🏫 Usage Guide
 
-Place your website screenshots in an `assets/` folder and reference them below:
+### 👤 For Users
+1. Report animal incident with description & location.
+2. View status of your reports.
+3. Get notified via email & dashboard updates.
+
+### 🦸 For Volunteers
+1. Browse unassigned requests nearby.
+2. Accept request & mark as “In Progress”.
+3. Complete rescue & upload outcome photo.
+
+---
+
+## 🔐 Security Features
+
+- Protected routes using **JWT**
+- Passwords hashed using **bcrypt**
+- Upload validation through **Multer + Cloudinary**
+- Role-based access control (User, Volunteer, Admin)
+
+---
+
+## 📷 Project Assets
+
+Save all screenshots in a project directory:
+```
+/StraySafe/Frontend/src/assets
+```
+Use relative paths or GitHub-hosted URLs in your documentation.
+
+---
 
 ## 🤝 Contributing
 
-1. Fork the repo  
-2. Create feature branch: `git checkout -b feature/YourFeature`  
-3. Commit changes: `git commit -m "Add YourFeature"`  
-4. Push & open PR  
-5. Ensure lint, tests, and type checks pass via `npm run prepush`
+We welcome contributions from animal lovers & developers:
+
+1. Fork this repository  
+2. Create a new branch:  
+   `git checkout -b feature/YourFeature`  
+3. Commit your changes:  
+   `git commit -m "Add YourFeature"`  
+4. Push your changes and open a Pull Request  
+5. Ensure everything passes: 
+   ```
+   npm run lint
+   npm run test
+   ```
+
+---
+
+## 👨‍💻 Author
+
+Created with 💙 by @shivamshrma09  
+> All lives matter — even the ones without a voice.
+
+```
+
+Let me know if you’d like help with auto-generating a pre-filled `.env` file template or `/backend` directory boilerplate!
