@@ -68,32 +68,31 @@ StraySafe empowers citizens, NGOs, and volunteers to collaboratively help stray 
 ## 🧭 Website Flow
 
 1. 🏠 User lands on Dashboard: Choose Login or Signup
+   
+<img width="1919" height="904" alt="dashboard" src="https://github.com/user-attachments/assets/2f7a264c-426f-4fd5-bf3c-8596f2308255" />
 
-```
-<img width="1919" height="904" src="https://github.com/user-attachments/assets/c9cca73d-b8ec-4fe6-8d02-99806c16a568" alt="dashboard" />
-```
 
 ---
 
 2. 🙋 Existing Users Login  
-```
-<img width="1423" height="683" src="https://github.com/user-attachments/assets/82cc85d6-d9ed-4c3f-8c46-05c47a4bdca3" alt="login" />
-```
+
+<img width="1423" height="683" alt="login" src="https://github.com/user-attachments/assets/a8e80b20-b39d-4b78-8e3d-c95ed60dd9fe" />
 
 3. 👤 New Account Registration — Select Volunteer or NGO  
-```
-<img width="1369" height="810" src="https://github.com/user-attachments/assets/5a36c12d-65a0-4e57-8763-1f02c45acff2" alt="role-based" />
-<img width="1367" height="851" src="https://github.com/user-attachments/assets/c57eaff9-eb5f-4f2b-a594-672ef0c9c4c6" alt="volunteer" />
+
+<img width="1369" height="810" alt="both" src="https://github.com/user-attachments/assets/65f365d3-269f-415d-9978-83088cdbc846" />
+
+<img width="1367" height="851" alt="volenter2" src="https://github.com/user-attachments/assets/4e05dcff-c9e4-43da-b7cb-5397f58a6916" />
 <img width="1405" height="895" src="https://github.com/user-attachments/assets/057089d8-d5de-4e59-9f90-c48a949903b9" alt="ngo" />
-```
+
 
 ---
 
 4. 🚑 Volunteer Reporting & Tracking  
-```
+
 <img width="1908" height="910" src="https://github.com/user-attachments/assets/4eefcb9a-9c5f-4109-a567-976e2f5d08d5" alt="report" />
 <img width="1906" height="903" src="https://github.com/user-attachments/assets/1f3437b1-6873-4b62-8fb0-3f5b8386b752" alt="myreports" />
-```
+
 
 ---
 
