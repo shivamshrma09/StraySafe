@@ -10,8 +10,7 @@ StraySafe is an AI-assisted web application designed to empower communities to r
 - **Backend Live Link:** _Coming in 2 days_
 
 - **🧾 Figma Design:** [Click here to view](https://www.figma.com/design/qhtQxZgrWr4HkFMLZJitop/Untitled?node-id=0-1&t=8nERqX4fNRUEWDGX-1)
-- **📽 Demo Video:** [Watch Here](https://www.dropbox.com/scl/fi/zndhcba1gv6dgvkv0mqk8/StraySafe-all-life-is-important-Google-Chrome-2025-07-22-21-15-59.mp4?rlkey=7ctrpe7ocid440b0cc237gll0&st=istcc1wx&dl=0)
-
+- **📽 Demo Video:** [Watch Here](https://drive.google.com/drive/folders/1iBFHSRj4YSukEDXiKTNQg3JMvoUhYweT?usp=sharing)
 ---
 
 ## 📋 Overview
